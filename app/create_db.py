@@ -5,6 +5,7 @@ import os
 import sys
 import funct
 
+
 mysql_enable = funct.get_config_var('mysql', 'enable')
 
 if mysql_enable == '1':

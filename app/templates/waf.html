@@ -3,19 +3,19 @@
 <table class="overview">
 	<tr class="overviewHead">
 		<td class="padding10 first-collumn">
-			Server
+			&#26381;&#21153;&#22120;
 		</td class="padding10 second-collumn">
 		<td class="padding10 second-collumn">
-			WAF status
+			WAF &#29366;&#24577;
 		</td>
 		<td class="padding10">
-			Action
+			&#34892;&#20026;
 		</td>
 		<td class="padding10">
-			WAF mode
+			WAF &#27169;&#24335;
 		</td  class="padding10">
 		<td>
-			Metrics
+			&#24230;&#37327;&#20449;&#24687;
 		</td>
 		<td>
 			<a onclick="showOverviewWaf()" title="Refresh" style="float: right; margin-right: 25px;"><img  src="/image/pic/update.png" alt="restart" class="icon"></a>
@@ -42,7 +42,7 @@ function callIframe(url, callback) {
 	});
 }
 function loadMetrics() {
-	callIframe('templates/metrics_waf_out.html', function(){
+	callIframe('templates/metric_waf.html', function(){
 		$.get( "options.py?waf_metrics=1&token="+$('#token').val(), function( data ) {
 			$( ".result" ).html( data );
 		});

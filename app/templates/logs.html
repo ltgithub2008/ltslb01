@@ -5,18 +5,18 @@
 	<tr class="overviewHead">
 		<td class="padding10 first-collumn" style="width: 10%;">
 			{% if onclick == 'viewLogs()' %}
-				Log
+				&#26085;&#24535;
 			{% else %}
-				Server
+				&#26381;&#21153;&#22120;
 			{% endif %}
 		</td>
 		{% if onclick != 'viewLogs()' %}
-		<td style="width: 5%;">WAF logs</td>
+		<td style="width: 5%;">WAF &#26085;&#24535;</td>
 		{% endif %}
-		<td style="width: 10%;">Number rows</td>
-		<td class="padding10" style="width: 10%;">Ex for grep</td>
+		<td style="width: 10%;">&#27599;&#39029;&#26174;&#31034;&#34892;&#25968;</td>
+		<td class="padding10" style="width: 10%;">&#31579;&#36873;&#26465;&#20214;&#65288;&#27491;&#21017;&#34920;&#36798;&#24335;&#65289;</td>
 		<td style="width: 10%;">
-			<label for="time_range_out_hour" style="padding: 0">Time range:</label>
+			<label for="time_range_out_hour" style="padding: 0">&#26102;&#38388;&#33539;&#22260;:</label>
 			<input type="text" id="time_range_out_hour" readonly class="time-range">:<input type="text" id="time_range_out_minut" readonly class="time-range"> -
 			<input type="text" id="time_range_out_hour1" readonly class="time-range">:<input type="text" id="time_range_out_minut1" readonly class="time-range">	
 		</td>
@@ -27,7 +27,7 @@
 			<form action="" method="get">
 				<select autofocus required name="serv" id="{{ select_id }}">					
 					{% if onclick == 'viewLogs()' %}
-						<option disabled selected>Choose log</option>
+						<option disabled selected>&#36873;&#25321;&#26085;&#24535;</option>
 						{% for select in selects %}
 							{% if select.2 == serv %}
 								<option value="{{ select.0 }}" selected>{{ select.1 }}</option>
@@ -36,7 +36,7 @@
 							{% endif %}
 						{% endfor %}
 					{% else %}
-						<option disabled selected>Choose server</option>
+						<option disabled selected>&#36873;&#25321;&#26381;&#21153;&#22120;</option>
 						{% for select in selects %}						
 							{% if select.2 == serv %}
 								<option value="{{ select.2 }}" selected>{{ select.1 }}</option>
@@ -62,7 +62,7 @@
 			<div id="time-range"></div>			
 		</td>			
 		<td class="padding10 first-collumn" style="width: 10%;">
-			<a class="ui-button ui-widget ui-corner-all" id="show" title="Show logs" onclick="{{ onclick }}">Show</a>
+			<a class="ui-button ui-widget ui-corner-all" id="show" title="&#26174;&#31034;&#26085;&#24535;&#20449;&#24687;" onclick="{{ onclick }}">&#26174;&#31034;</a>
 			</form>
 		</td>
 	</tr>

@@ -2,17 +2,17 @@
 {% block content %}
 	<table class="overview">
 		<tr class="overviewHead">
-			<td class="padding10 first-collumn">Server</td>
-			<td>Disable/Enable server or output any information</td>
-			<td class="padding10">Command</td>
-			<td>Save change</td>
+			<td class="padding10 first-collumn">&#26381;&#21153;&#22120;</td>
+			<td>&#21551;&#29992;&#32;&#47;&#32;&#31105;&#29992;&#26381;&#21153;&#22120;&#25110;&#32773;&#36755;&#20986;&#20449;&#24687;</td>
+			<td class="padding10">&#21629;&#20196;</td>
+			<td>&#20445;&#23384;&#26356;&#25913;</td>
 			<td></td>
 		</tr>
 		<tr>
 			<td class="padding10 first-collumn" style="width: 25%;">
 				<form action="{{ action }}" method="get">
 					<select autofocus required id="{{ select_id }}" name="{{ select_id }}">
-						<option disabled>Choose server</option>
+						<option disabled>&#36873;&#25321;&#26381;&#21153;&#22120;</option>
 						{% for select in selects %}
 							{% if serv == select.2 %}
 								<option value="{{ select.2 }}" selected>{{ select.1 }}</option>
@@ -24,13 +24,13 @@
 			</td>
 			<td style="width: 30%;">
 				<select required name="servaction" id="servaction">
-					<option disabled>Choose action</option>
+					<option disabled>&#36873;&#25321;</option>
 					{% if role <= 2 %}
-						<option value="disable">Disable</option>
-						<option value="enable">Enable</option>
-						<option value="set">Set</option>
+						<option value="disable">&#31105;&#29992;</option>
+						<option value="enable">&#21551;&#29992;</option>
+						<option value="set">&#21407;&#35774;&#32622;</option>
 					{% endif %}
-					<option value="show" selected>Show</option>
+					<option value="show" selected>&#26174;&#31034;</option>
 				</select>
 			</td>
 			<td>
@@ -42,7 +42,7 @@
 				{% endif %}
 			</td>
 			<td>
-				<a class="ui-button ui-widget ui-corner-all" id="show" title="Enter" onclick="{{ onclick }}">Enter</a>
+				<a class="ui-button ui-widget ui-corner-all" id="show" title="&#25191;&#34892;" onclick="{{ onclick }}">&#25191;&#34892;</a>
 			</td>
 				</form>
 		</tr>

@@ -3,6 +3,8 @@ import funct, sql
 import create_db
 import os, http.cookies
 from jinja2 import Environment, FileSystemLoader
+
+
 env = Environment(loader=FileSystemLoader('templates/'))
 template = env.get_template('ovw.html')
 	
@@ -33,7 +35,7 @@ except:
 
 template = template.render(h2 = 1,
 							autorefresh = 1,
-							title = "Overview",
+							title = "&#27010;&#36848;&#20449;&#24687;",
 							role = sql.get_user_role_by_uuid(user_id.value),
 							user = user,
 							users = users,

@@ -3,7 +3,7 @@
 <br />
 <form style="padding-left: 5px;" action="viewsttats.py" method="get">
 	<select autofocus required name="serv" id="serv">
-		<option disabled>Choose server</option>
+		<option disabled>&#36873;&#25321;&#26381;&#21153;&#22120;</option>
 			{% for select in selects %}
 				{% if select.2 == serv %}
 					<option value="{{ select.2 }}" selected>{{ select.1 }}</option>
@@ -12,7 +12,7 @@
 				{% endif %}
 			{% endfor %}
 	</select>		
-	<a class="ui-button ui-widget ui-corner-all" id="show" title="Show stats" onclick="{{ onclick }}">Show</a>
+	<a class="ui-button ui-widget ui-corner-all" id="show" title="&#26174;&#31034;&#32479;&#35745;&#25968;&#25454;" onclick="{{ onclick }}">&#26174;&#31034;</a>
 </form>
 <br />
 <div id="ajax" style="margin-left: 5px; margin-right: 5px;"></div>

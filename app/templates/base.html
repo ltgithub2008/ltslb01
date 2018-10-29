@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>{{title}} - HAproxy-WI</title>
+		<title>{{title}} - LTproxy-WI</title>
 		<meta charset="UTF-8">	
 		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 		<meta http-equiv="Pragma" content="no-cache" />
@@ -35,7 +35,7 @@
 		</div>
 		<div class="top-menu">
 			<div class="LogoText">
-				<span id="logo_text" style="padding: 10px;">HAproxy-WI</span>
+				<span id="logo_text" style="padding: 10px;">LTproxy-WI</span>
 				<a href="#" id="hide_menu" title="Hide menu" style="margin-left: 24px;position: absolute;">
 					<span class="ui-state-default ui-corner-all">
 						<span class="ui-icon ui-icon-arrowthick-1-w" id="arrow"></span>
@@ -45,63 +45,66 @@
 			<div id="top-link" class="top-link">
 				<nav class="menu">
 					<ul id="menu">
-						<li><a title="Statistics, monitoring and logs" class="stats">Stats</a>			
-							<li><a href=/app/overview.py title="Server and service status" class="overview-link head-submenu">Overview</a></li>
-							<li><a href=/app/viewsttats.py title"Show stats" class="stats head-submenu">Stats</a></li>
-							<li><a href=/app/logs.py title="View logs" class="logs head-submenu"> Logs</a></li>	
+						<li><a title="&#x7edf;&#x8ba1;&#x3001;&#x76d1;&#x63a7;&#x3001;&#x65e5;&#x5fd7;" class="stats">&#x7edf;&#x8ba1;&#x6570;&#x636e;</a>			
+							<li><a href=/app/overview.py title="&#x670d;&#x52a1;&#x5668;/&#x670d;&#x52a1; &#x72b6;&#x6001;" class="overview-link head-submenu">&#x6982;&#x8ff0;</a></li>
+							<li><a href=/app/viewsttats.py title="&#x663e;&#x793a;&#x7edf;&#x8ba1;&#x6570;&#x636e;" class="stats head-submenu">&#x7edf;&#x8ba1;&#x6570;&#x636e;</a></li>
+							<li><a href=/app/logs.py title="&#x67e5;&#x770b;&#x65e5;&#x5fd7;" class="logs head-submenu">&#x65e5;&#x5fd7;</a></li>	
 							<li><a href=/app/edit.py title="Runtime API" class="runtime head-submenu">Runtime API</a></li>
-							<li><a href=/app/metrics.py title="Metrics" class="metrics head-submenu">Metrics</a></li>
+							<li><a href=/app/metrics.py title="&#x5ea6;&#x91cf;" class="metrics head-submenu">&#x5ea6;&#x91cf;</a></li>
 						</li>
-						<li><a title="Actions with Haproxy configs" class="config-show">Haproxy</a>			
+						<li><a title="Haproxy&#x76f8;&#x5173;&#x914d;&#x7f6e;" class="config-show">Haproxy</a>			
 						{% if user %}	
-							<li><a href=/app/config.py title="Working with Haproxy Configs" class="edit head-submenu">Configs</a> </li>
+							<li><a href=/app/config.py title="Haproxy&#x76f8;&#x5173;&#x914d;&#x7f6e;" class="edit head-submenu">&#x914d;&#x7f6e;</a> </li>
 							{% if role <= 2 %}
-								<li><a href=/app/add.py#listner title="Add single listen" class="add head-submenu" id="add1">Add listen</a></li>
-								<li><a href=/app/add.py#frontend title="Add single frontend" class="add head-submenu" id="add2">Add frontend</a></li>
-								<li><a href=/app/add.py#backend title="Add single backend" class="add head-submenu" id="add3">Add backend</a></li>
-								<li><a href=/app/add.py#ssl title="Upload SSL cert" class="cert head-submenu" id="add4">SSL</a></li>	
-								<li><a href=/app/lists.py title="Manage black and white lists" class="lists head-submenu">Lists</a> </li>	
-								<li><a href=/app/waf.py title="Web application firewall" class="waf head-submenu">WAF</a> </li>	
-								<li><a href=/app/ihap.py title="Installation HAProxy" class="hap head-submenu">Installation</a> </li>
+								<li><a href=/app/add.py#listner title="&#x6dfb;&#x52a0; listen" class="add head-submenu" id="add1">&#x6dfb;&#x52a0; listen</a></li>
+								<li><a href=/app/add.py#frontend title="&#x6dfb;&#x52a0; frontend" class="add head-submenu" id="add2">&#x6dfb;&#x52a0; frontend</a></li>
+								<li><a href=/app/add.py#backend title="&#x6dfb;&#x52a0; backend" class="add head-submenu" id="add3">&#x6dfb;&#x52a0; backend</a></li>
+								<li><a href=/app/add.py#ssl title="&#x4e0a;&#x4f20;SSL&#x8bc1;&#x4e66;" class="cert head-submenu" id="add4">SSL</a></li>	
+								<li><a href=/app/lists.py title="&#x7ba1;&#x7406;&#x9ed1;&#x540d;&#x5355;/&#x767d;&#x540d;&#x5355;" class="lists head-submenu">&#x9ed1;&#x540d;&#x5355;/&#x767d;&#x540d;&#x5355;</a> </li>	
+								<li><a href=/app/waf.py title="Web&#x5e94;&#x7528;&#x9632;&#x706b;&#x5899;" class="waf head-submenu">WAF</a> </li>	
+								<li><a href=/app/ihap.py title="&#x5b89;&#x88c5;HAProxy" class="hap head-submenu">&#x5b89;&#x88c5;</a> </li>
 							{% endif %}
 						</li>
 						{% if role <= 2 %}
-							<li><a title="Actions with configs" class="version">Versions</a>		
-								<li><a href=/app/configver.py title="Upload old versions configs" class="upload head-submenu">Upload</a></li>
+							<li><a title="&#x914d;&#x7f6e;&#x76f8;&#x5173;&#x64cd;&#x4f5c;" class="version">&#x7248;&#x672c;</a>		
+								<li><a href=/app/configver.py title="&#x4e0a;&#x4f20;&#x65e7;&#x7248;&#x672c;&#x914d;&#x7f6e;" class="upload head-submenu">&#x4e0a;&#x4f20;</a></li>
 						{% endif %}
 							{% if role <= 2 %}
-								<li><a href=/app/delver.py title="Delete old versions configs" class="deleteVer head-submenu">Delete</a></li>
+								<li><a href=/app/delver.py title="&#x5220;&#x9664;&#x65e7;&#x7248;&#x672c;&#x914d;&#x7f6e;" class="deleteVer head-submenu">&#x5220;&#x9664;</a></li>
 							{% endif %}	
 							</li>	
 						{% if role <= 2 %}
-							<li><a title="Keepalived" class="ha">Keepalived</a>
-								<li><a href=/app/ha.py title="Create HA cluster" class="keepalived head-submenu">HA</a></li>
-								<li><a href=/app/keepalivedconfig.py title="Edit keepalived config" class="edit head-submenu">Edit config</a></li>		
+							<li><a title="&#x8d1f;&#x8f7d;&#x5747;&#x8861;" class="ha">&#x8d1f;&#x8f7d;&#x5747;&#x8861;</a>
+								<li><a href=/app/ha.py title="&#x521b;&#x5efa;HA&#x9ad8;&#x53ef;&#x7528;&#x7fa4;&#x96c6;" class="keepalived head-submenu">HA&#x9ad8;&#x53ef;&#x7528;</a></li>
+								<li><a href=/app/keepalivedconfig.py title="&#x7f16;&#x8f91;&#x8d1f;&#x8f7d;&#x5747;&#x8861;&#x914d;&#x7f6e;" class="edit head-submenu">&#x7f16;&#x8f91;&#x914d;&#x7f6e;</a></li>		
 							</li>
-							<li><a title="Servers manage" class="runtime">Servers</a>
-								<li><a href=/app/servers.py#users title="Actions with users" class="users head-submenu">Users</a></li>
-								<li><a href=/app/servers.py#servers title="Server manage" class="runtime head-submenu">Servers</a></li>
-								<li><a href=/app/servers.py#ssh title="Manage SSH credentials" class="admin head-submenu">SSH credentials</a></li>		
+							<li><a title="&#x670d;&#x52a1;&#x5668;&#x7ba1;&#x7406;" class="runtime">&#x5668;&#x7ba1;&#x7406;</a>
+								<li><a href=/app/servers.py#users title="&#x7528;&#x6237;&#x76f8;&#x5173;&#x64cd;&#x4f5c;" class="users head-submenu">&#x7528;&#x6237;</a></li>
+								<li><a href=/app/servers.py#servers title="&#x670d;&#x52a1;&#x5668;&#x7ba1;&#x7406;" class="runtime head-submenu">&#x670d;&#x52a1;&#x5668;</a></li>
+								<li><a href=/app/servers.py#ssh title="&#x7ba1;&#x7406;SSH&#x8bc1;&#x4e66;" class="admin head-submenu">SSH &#x8bc1;&#x4e66;</a></li>		
 							</li>
 						{% endif %}
 						{% if role <= 1 %}
-							<li><a title="Admin area" class="admin">Admin area</a>
-								<li><a href=/app/users.py#users title="Actions with users" class="users head-submenu">Users</a></li>
-								<li><a href=/app/users.py#groups title="Actions with groups" class="group head-submenu">Groups</a></li>
-								<li><a href=/app/users.py#servers title="Actions with servers" class="runtime head-submenu">Servers</a></li>
-								<li><a href=/app/users.py#roles title="Users roles" class="role head-submenu">Roles</a></li>
-								<li><a href=/app/users.py#ssh title="Manage SSH credentials" class="admin head-submenu">SSH credentials</a></li>
-								<li><a href=/app/settings.py title="HAproxy-WI settings" class="settings head-submenu">Settings</a></li>
-								<li><a href=/app/viewlogs.py title="View internal logs" class="logs head-submenu">Internal logs</a></li>
+							<li><a title="&#x7cfb;&#x7edf;&#x7ba1;&#x7406;&#x5458;&#x529f;&#x80fd;&#x533a;" class="admin">&#x7cfb;&#x7edf;&#x7ba1;&#x7406;&#x5458;&#x529f;&#x80fd;&#x533a;</a>
+								<li><a href=/app/users.py#users title="&#x7528;&#x6237;&#x76f8;&#x5173;&#x64cd;&#x4f5c;" class="users head-submenu">&#x7528;&#x6237;</a></li>
+								<li><a href=/app/users.py#groups title="&#x7ec4;&#x76f8;&#x5173;&#x64cd;&#x4f5c;" class="group head-submenu">&#x7ec4;</a></li>
+								<li><a href=/app/users.py#servers title="&#x670d;&#x52a1;&#x5668;&#x76f8;&#x5173;&#x64cd;&#x4f5c;" class="runtime head-submenu">&#x670d;&#x52a1;&#x5668;</a></li>
+								<li><a href=/app/users.py#roles title="&#x7528;&#x6237;&#x89d2;&#x8272;" class="role head-submenu">&#x89d2;&#x8272;</a></li>
+								<li><a href=/app/users.py#ssh title="&#x7ba1;&#x7406;SSH&#x8bc1;&#x4e66;" class="admin head-submenu">SSH&#x8bc1;&#x4e66;</a></li>
+								<li><a href=/app/settings.py title="HAproxy-WI &#x8bbe;&#x7f6e;" class="settings head-submenu">&#x8bbe;&#x7f6e;</a></li>
+								<li><a href=/app/viewlogs.py title="&#x67e5;&#x770b;&#x5185;&#x90e8;&#x65e5;&#x5fd7;" class="logs head-submenu">&#x5185;&#x90e8;&#x65e5;&#x5fd7;</a></li>
 							</li>
 						{% endif %}	
 					{% endif %}
 					</ul>
 				</nav>
 				<div class="copyright-menu">
-					HAproxy-WI v3.2.13
+					LTproxy-WI v3.2.13
 					<br>
+					<!--
 					<a href="https://www.patreon.com/haproxy_wi" title="Donate" target="_blank" style="color: #fff; margin-left: 30px; color: red;" class="patreon">  Patreon</a>
+					-->
+					<a href="http://www.lingtong.com" title="Lingtong" target="_blank" style="color: #fff; margin-left: -28px; color: lightblue;">&#x4e2d;&#x6587;&#x7248;&#x6280;&#x672f;&#x652f;&#x6301;&#x7531;Lingtong&#x63d0;&#x4f9b;</a>
 				</div>
 			</div>
 		</div>
@@ -111,16 +114,17 @@
 				<h2>
 					{{title}}
 					{% if user %}
-						<a href=/app/login.py?logout=logout title="Logout, user name: {{ user }}" class="login"> Logout</a>						
+						<a href=/app/login.py?logout=logout title="&#27880;&#38144;&#29992;&#25143;: {{ user }}" class="login"> &#27880;&#38144;</a>		
+						<a href=http://www.lingtong.com title="&#24191;&#24030;&#24066;&#28789;&#36890;&#26032;&#25216;&#26415;&#26377;&#38480;&#20844;&#21496;&#25552;&#20379;&#25216;&#26415;&#25903;&#25345;" style="color:white"> - &#28789;&#36890;&#25216;&#26415;&#25903;&#25345;</a>
 					{% else %}
-						<a href=/app/login.py title="Login" class="login"> Login</a>
+						<a href=/app/login.py title="&#30331;&#24405;" class="login"> &#30331;&#24405;</a>
 					{% endif %}
 					{% if autorefresh %}
 						<span class="auto-refresh">
 							<a onclick="pauseAutoRefresh()" class="auto-refresh-pause" style="display: none; margin-top: 4px;"></a>
 							<a onclick="pauseAutoResume()" class="auto-refresh-resume" style="display: none; margin-top: 4px;"></a>
-							<a id="0"><img  src="/image/pic/update.png" alt="restart" class="icon"> Auto-refresh</a>
-							<a id="1" style="display: none;"><img  src="/image/pic/update.png" alt="restart" class="icon"> Auto-refresh</a>
+							<a id="0"><img  src="/image/pic/update.png" alt="restart" class="icon"> &#33258;&#21160;&#21047;&#26032;</a>
+							<a id="1" style="display: none;"><img  src="/image/pic/update.png" alt="restart" class="icon"> &#33258;&#21160;&#21047;&#26032;</a>
 						</span>		
 					{% endif %}
 				</h2>
@@ -128,61 +132,61 @@
 			{% if autorefresh %}
 				<div class="auto-refresh-div">
 					<div class="auto-refresh-head">
-						Refresh Interval
+						&#21047;&#26032;&#38388;&#38548;
 					</div>
 					<div class="auto-refresh-interval">
 						<div class="auto-refresh-ul">
 							<ul>
 								<li>
-									<a class="ui-button ui-widget ui-corner-all" onclick="setRefreshInterval(0)" title="Turn off auto-refresh">Off</a> 
+									<a class="ui-button ui-widget ui-corner-all" onclick="setRefreshInterval(0)" title="&#20851;&#38381;&#33258;&#21160;&#21047;&#26032;">&#20851;</a> 
 								</li>
 							</ul>
 						</div>
 						<div class="auto-refresh-ul" id="secIntervals">
 							<ul>
 								<li>
-									<a title="Auto-refresh every 5 seconds" onclick="setRefreshInterval(5000)">5 seconds</a>
+									<a title="Auto-refresh every 5 seconds" onclick="setRefreshInterval(5000)">5 &#31186;</a>
 								</li>
 								<li>
-									<a title="Auto-refresh every 10 seconds" onclick="setRefreshInterval(10000)">10 seconds</a>
+									<a title="Auto-refresh every 10 seconds" onclick="setRefreshInterval(10000)">10 &#31186;</a>
 								</li>
 								<li>
-									<a title="Auto-refresh every 30 seconds" onclick="setRefreshInterval(30000)">30 seconds</a>
+									<a title="Auto-refresh every 30 seconds" onclick="setRefreshInterval(30000)">30 &#31186;</a>
 								</li>
 								<li>
-									<a title="Auto-refresh ever 45 seconds" onclick="setRefreshInterval(45000)">45 seconds</a>		
-								</li>
-							</ul>
-						</div>
-						<div class="auto-refresh-ul">
-							<ul>
-								<li>
-									<a title="Auto-refresh every 1 minute" onclick="setRefreshInterval(60000)">1 minute</a>
-								</li>
-								<li>
-									<a title="Auto-refresh every 5 minutes" onclick="setRefreshInterval(300000)">5 minutes</a>
-								</li>
-								<li>
-									<a title="Auto-refresh every 15 minutes" onclick="setRefreshInterval(900000)">15 minutes</a>
-								</li>
-								<li>
-									<a title="Auto-refresh ever 30 minutes" onclick="setRefreshInterval(1800000)">30 minutes</a>		
+									<a title="Auto-refresh ever 45 seconds" onclick="setRefreshInterval(45000)">45 &#31186;</a>		
 								</li>
 							</ul>
 						</div>
 						<div class="auto-refresh-ul">
 							<ul>
 								<li>
-									<a title="Auto-refresh every 1 hour" onclick="setRefreshInterval(3600000)">1 hour</a>
+									<a title="Auto-refresh every 1 minute" onclick="setRefreshInterval(60000)">1 &#20998;</a>
 								</li>
 								<li>
-									<a title="Auto-refresh every 2 hour" onclick="setRefreshInterval(7200000)">2 hour</a>
+									<a title="Auto-refresh every 5 minutes" onclick="setRefreshInterval(300000)">5 &#20998;</a>
 								</li>
 								<li>
-									<a title="Auto-refresh every 12 hour" onclick="setRefreshInterval(43200000)">12 hour</a>
+									<a title="Auto-refresh every 15 minutes" onclick="setRefreshInterval(900000)">15 &#20998;</a>
 								</li>
 								<li>
-									<a title="Auto-refresh ever 1 day" onclick="setRefreshInterval(86400000)">1 day</a>		
+									<a title="Auto-refresh ever 30 minutes" onclick="setRefreshInterval(1800000)">30 &#20998;</a>		
+								</li>
+							</ul>
+						</div>
+						<div class="auto-refresh-ul">
+							<ul>
+								<li>
+									<a title="Auto-refresh every 1 hour" onclick="setRefreshInterval(3600000)">1 &#23567;&#26102;</a>
+								</li>
+								<li>
+									<a title="Auto-refresh every 2 hour" onclick="setRefreshInterval(7200000)">2 &#23567;&#26102;</a>
+								</li>
+								<li>
+									<a title="Auto-refresh every 12 hour" onclick="setRefreshInterval(43200000)">12 &#23567;&#26102;</a>
+								</li>
+								<li>
+									<a title="Auto-refresh ever 1 day" onclick="setRefreshInterval(86400000)">1 &#22825;</a>		
 								</li>
 							</ul>
 						</div>

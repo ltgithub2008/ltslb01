@@ -5,27 +5,27 @@
 		<li><a href="#listen">Listen</a></li>
 		<li><a href="#frontend">Frontend</a></li>
 		<li><a href="#backend">Backend</a></li>
-		<li><a href="#ssl">SSL certificates</a></li>
+		<li><a href="#ssl">SSL &#35777;&#20070;</a></li>
 		{% if user %}
-			<a href=/app/login.py?logout=logout title="Logout, user name: {{ user }}" class="login"> Logout</a>						
+			<a href=/app/login.py?logout=logout title="&#27880;&#38144;&#29992;&#25143;: {{ user }}" class="login"> &#27880;&#38144;</a>		
 		{% else %}
-			<a href=/app/login.py title="Login" class="login"> Login</a>
+			<a href=/app/login.py title="&#30331;&#24405;" class="login"> &#30331;&#24405;</a>
 		{% endif %}
 	</ul>
 	<div id="listen">
 		<form name="add-listner" action="/app/add.py">
 		<table class="add-table">
-			<caption><h3 style="margin-left: 20px; margin-bottom: 10px;">Add listen</h3></caption>
+			<caption><h3 style="margin-left: 20px; margin-bottom: 10px;">&#28155;&#21152; listen</h3></caption>
 				<tr>
-					<td class="addName">Select server: </td>
+					<td class="addName">&#36873;&#25321;&#26381;&#21153;&#22120;: </td>
 					<td class="addOption">
 						<select required name="serv" id="serv">
-							<option disabled selected>Choose server</option>
+							<option disabled selected>&#36873;&#25321;&#26381;&#21153;&#22120;</option>
 							{% for select in selects %}
 								<option value="{{ select.2 }}">{{ select.1 }}</option>
 							{% endfor %}	
 						</select>
-						<div class="tooltip tooltipTop"><b>Note:</b> If you reconfigure Master server, Slave will reconfigured automatically</div>
+						<div class="tooltip tooltipTop"><b>&#27880;&#24847;:</b> &#22914;&#26524;&#20027;&#26381;&#21153;&#22120;&#37325;&#26032;&#37197;&#32622;&#65292;&#20854;&#20182;&#20174;&#23646;&#26381;&#21153;&#22120;&#20250;&#33258;&#21160;&#37325;&#26032;&#37197;&#32622;</div>
 					</td>
 					<td rowspan="5" class="add-note addName">
 						A "listen" section defines a complete proxy with its frontend and backend parts combined in one section. It is generally useful for TCP-only traffic.
@@ -42,28 +42,28 @@
 					</td>
 				</tr>
 		<tr>
-			<td class="addName">Name:</td>
+			<td class="addName">&#21517;&#31216;:</td>
 			<td class="addOption">
-				<input type="text" name="listner" id="name" required title="Name Listner" placeholder="web_80" class="form-control">
+				<input type="text" name="listner" id="name" required title="Listner &#21517;&#31216;" placeholder="web_80" class="form-control">
 			</td>
 		</tr>
 		<tr>
-			<td class="addName">IP and Port:</td>
+			<td class="addName">&#73;&#80;&#22320;&#22336;&#32;&#58;&#32;&#31471;&#21475;</td>
 			<td class="addOption">
-				<input type="text" name="ip" id="ip" title="" size="15" placeholder="Any" class="form-control"><b>:</b>
-				<input type="number" name="port" id="listen-port" required title="Port for bind listen" size="5" placeholder="8080" class="form-control">
-				<div class="tooltip tooltipTop">IP for bind listner, <b>if empty will be assignet on all IPs</b>. Start typing ip, or press down.<br>If you use <b>VRRP keep in blank</b>. If you assign an IP, the slave will not start</div>
+				<input type="text" name="ip" id="ip" title="" size="15" placeholder="&#20219;&#24847;" class="form-control"><b>:</b>
+				<input type="number" name="port" id="listen-port" required title="&#32465;&#23450; listen &#30340;&#31471;&#21475;" size="5" placeholder="8080" class="form-control">
+				<div class="tooltip tooltipTop">&#32465;&#23450;&#30340;&#73;&#80;&#22320;&#22336;, <b>&#22914;&#26524;&#20026;&#31354;&#21017;&#32465;&#23450;&#25152;&#26377;&#73;&#80;&#22320;&#22336;</b>&#36755;&#20837;&#73;&#80;&#22320;&#22336;&#25110;&#32773;&#25353;&#19979;&#26041;&#21521;&#38190;&#36873;&#25321;&#12290;<br>&#22914;&#26524;<b>&#20351;&#29992;&#32;&#86;&#65;&#82;&#80;&#32;&#21017;&#20445;&#25345;&#31354;</b>&#12290;&#22914;&#26524;&#25351;&#23450;&#73;&#80;&#65292;&#21017;&#20174;&#23646;&#26381;&#21153;&#22120;&#19981;&#20250;&#21551;&#21160;</div>
 			</td>
 		</tr>
 		<tr class="advance">
-			<td class="addName">Mode: </td>
+			<td class="addName">&#27169;&#24335;: </td>
 			<td class="addOption">
 				<select required name="mode" id="listen-mode-select">
 					<option value="http" selected>http</option>
 					<option value="tcp">tcp</option>
 				</select>
 				<span id="https-listen-span">
-					<label for="https-listen" style="margin-top: 5px;" title="Enable ssl">ssl?</label>
+					<label for="https-listen" style="margin-top: 5px;" title="&#21551;&#29992; ssl">ssl?</label>
 					<input type="checkbox" id="https-listen" name="ssl" value="https" >
 				</span>
 				<div id="https-hide-listen" style="display: none;">
@@ -74,14 +74,14 @@
 			</td>
 		</tr>
 		<tr class="advance">
-			<td class="addName">Maxconn: </td>
+			<td class="addName">&#26368;&#22823;&#36830;&#25509;&#25968;: </td>
 			<td class="addOption">
-				<input type="number" name="maxconn" required title="Fix the maximum number of concurrent connections on a frontend" size="5" value="2000" class="form-control">
-				<div class="tooltip tooltipTop">This value should not exceed the global maxconn. Default global maxconn value: 2000</div>
+				<input type="number" name="maxconn" required title="&#20462;&#22797;&#21069;&#31471;&#30340;&#24182;&#21457;&#36830;&#25509;&#30340;&#26368;&#22823;&#25968;&#37327;" size="5" value="2000" class="form-control">
+				<div class="tooltip tooltipTop">&#36825;&#20010;&#25968;&#20540;&#19981;&#33021;&#36229;&#36807;&#20840;&#23616;&#26368;&#22823;&#36830;&#25509;&#25968;&#12290;&#40664;&#35748;&#20840;&#23616;&#26368;&#22823;&#36830;&#25509;&#25968;&#65306;&#50;&#48;&#48;&#48;</div>
 			</td>
 		</tr>
 		<tr class="advance">
-			<td class="addName">Balance: </td>
+			<td class="addName">&#36127;&#36733;&#22343;&#34913;&#27169;&#24335;: </td>
 			<td class="addOption">
 				<select required name="balance">
 					<option value="roundrobin" selected>roundrobin</option>
@@ -93,12 +93,12 @@
 			</td>
 		</tr>
 		<tr class="advance">
-			<td class="addName"><span title="Cache support start 1.8 and latter">Web acceleration(?):</span></td>
+			<td class="addName"><span title="&#32531;&#23384;&#21387;&#32553;&#27604;&#29575;&#49;&#46;&#56;&#25110;&#26356;&#39640;">Web &#21152;&#36895;(?):</span></td>
 			<td class="addOption">
 				<span class="controlgroup">	
-					<label for="compression" title="Enable Compression">Compression</label><input type="checkbox" id="compression" name="compression" value="1">
-					<label for="cache" title="Enable Compression">Cache</label><input type="checkbox" id="cache" name="cache" value="2">
-					<label for="ssl_offloading" title="Enable SSL Offloading">SSL Offloading</label><input type="checkbox" id="ssl_offloading">
+					<label for="compression" title="&#21551;&#29992;&#21387;&#32553;">&#21387;&#32553;</label><input type="checkbox" id="compression" name="compression" value="1">
+					<label for="cache" title="&#21551;&#29992;&#21387;&#32553;">&#32531;&#23384;</label><input type="checkbox" id="cache" name="cache" value="2">
+					<label for="ssl_offloading" title="&#21551;&#29992; SSL Offloading">SSL Offloading</label><input type="checkbox" id="ssl_offloading">
 				</span>
 			</td>
 		</tr>
@@ -106,23 +106,23 @@
 			<td class="addName"><span title="Web application firewall">WAF(?):</span></td>
 			<td class="addOption">
 				<span class="controlgroup">
-					<label for="slow_atack" title="Slow atack protect">Slow atack</label><input type="checkbox" id="slow_atack">
-					<label for="ddos" title="DDOS atack protect">DDOS</label><input type="checkbox" id="ddos">
-					<label for="blacklist_checkbox" title="Enable SSL Offloading">Blacklist</label><input type="checkbox" id="blacklist_checkbox">
-					<label for="waf" title="Web application firewall">WAF</label><input type="checkbox" id="waf" name="waf" value="1">
+					<label for="slow_atack" title="Slow atack &#20445;&#25252;">Slow atack</label><input type="checkbox" id="slow_atack">
+					<label for="ddos" title="DDOS atack &#20445;&#25252;">DDOS</label><input type="checkbox" id="ddos">
+					<label for="blacklist_checkbox" title="&#40657;&#21517;&#21333;">Blacklist</label><input type="checkbox" id="blacklist_checkbox">
+					<label for="waf" title="Web &#24212;&#29992;&#38450;&#28779;&#22681;">WAF</label><input type="checkbox" id="waf" name="waf" value="1">
 				</span>
 				<div id="blacklist-hide" style="display: none;">
-					<br /><span class="tooltip tooltipTop">Enter the name of the blacklist, or press down:</span><br />
+					<br /><span class="tooltip tooltipTop">&#36755;&#20837;&#40657;&#21517;&#21333;&#30340;&#21517;&#31216;&#25110;&#32773;&#25353;&#19979;&#26041;&#21521;&#38190;&#36873;&#25321;:</span><br />
 					<input type="text" name="blacklist" placeholder="blacklist.lst" class="form-control" size="39" id="blacklist-hide-input"><br />
 				</div>
 			</td>
 		</tr>
 		<tr class="advance">
-			<td class="addName">Optinons:</td>
+			<td class="addName">&#36873;&#39033;:</td>
 			<td class="addOption">
 				<span class="controlgroup">				
-					<label for="forward_for" title="Option Forward for if none">Forward for</label><input type="checkbox" id="forward_for">
-					<label for="redispatch" title="Enable Redispatch">Redispatch</label><input type="checkbox" id="redispatch">					
+					<label for="forward_for" title="Forward for &#36873;&#39033;">Forward for</label><input type="checkbox" id="forward_for">
+					<label for="redispatch" title="&#21551;&#29992; Redispatch">Redispatch</label><input type="checkbox" id="redispatch">					
 					<select name="force_close" class="force_close">
 						<option disabled selected>Force HTTP close</option>
 						<option>Off</option>
@@ -130,8 +130,8 @@
 						<option value="2">Force close</option>
 						<option value="3">Pretend keep alive</option>
 					</select>	
-					<label for="cookie" title="Enable Redispatch">Set cookie</label><input type="checkbox" id="cookie" name="cookie" value="1">
-					<label for="options-listen-show" title="Set options manualy">Set options</label><input type="checkbox" id="options-listen-show">
+					<label for="cookie" title="&#21551;&#29992; Redispatch">&#35774;&#32622; cookie</label><input type="checkbox" id="cookie" name="cookie" value="1">
+					<label for="options-listen-show" title="&#25163;&#21160;&#35774;&#32622;&#36873;&#39033;">&#35774;&#32622;&#36873;&#39033;</label><input type="checkbox" id="options-listen-show">
 				</span>
 				<br>
 				<span id="cookie_div" style="display: none;">
@@ -171,20 +171,20 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="addName">Servers:</td>
+			<td class="addName">&#26381;&#21153;&#22120;:</td>
 			<td class="addOption">
 				<span id="servers">
-					<input name="servers" required title="Backend IP" size=14 placeholder="xxx.xxx.xxx.xxx" class="form-control">:
-					<input name="server_port" required title="Backend IP" size=1 placeholder="yyy" class="form-control">
+					<input name="servers" required title="IP" size=14 placeholder="xxx.xxx.xxx.xxx" class="form-control">:
+					<input name="server_port" required title="&#31471;&#21475;" size=1 placeholder="yyy" class="form-control">
 					<br />
-					<input name="servers" title="Backend port" size=14 placeholder="xxx.xxx.xxx.xxx" class="form-control">:
-					<input name="server_port" title="Backend port" size=1 placeholder="yyy" class="form-control">
+					<input name="servers" title="IP" size=14 placeholder="xxx.xxx.xxx.xxx" class="form-control">:
+					<input name="server_port" title="&#31471;&#21475;" size=1 placeholder="yyy" class="form-control">
 					<br />
-					<input name="servers" title="Backend port" size=14 placeholder="xxx.xxx.xxx.xxx" class="form-control">:
-					<input name="server_port" title="Backend port" size=1 placeholder="yyy" class="form-control">
+					<input name="servers" title="IP" size=14 placeholder="xxx.xxx.xxx.xxx" class="form-control">:
+					<input name="server_port" title="&#31471;&#21475;" size=1 placeholder="yyy" class="form-control">
 				</span>
 				<span>
-					<a class="add-server" id="add-server-input" title="Add backend server" style="cursor: pointer;"></a>
+					<a class="add-server" id="add-server-input" title="&#28155;&#21152;&#26381;&#21153;&#22120;" style="cursor: pointer;"></a>
 				</span>
 			</td>
 		</tr>
@@ -221,12 +221,12 @@
 			</td>
 		</tr>
 		<tr class="advance-show">
-			<td class="addName">Advanced:</td>
-			<td class="addOption"><a href="#" title="Show Advanced settings">Show Advanced settings</a></td>
+			<td class="addName">&#39640;&#32423;:</td>
+			<td class="addOption"><a href="#" title="&#26174;&#31034;&#39640;&#32423;&#35774;&#32622;">&#26174;&#31034;&#39640;&#32423;&#35774;&#32622;</a></td>
 		</tr>
 		<tr>
 			<td class="addButton">
-				<button type="submit" value="" name="" class="btn btn-default">Add Listen</button>
+				<button type="submit" value="" name="" class="btn btn-default">&#28155;&#21152; Listen</button>
 			</td>
 		</tr>
 		</form>
@@ -237,12 +237,12 @@
 	<div id="frontend">
 		<form name="add-frontend" action="/app/add.py">
 		<table>
-			<caption><h3 style="margin-left: 20px; margin-bottom: 10px;">Add frontend</h3></caption>
+			<caption><h3 style="margin-left: 20px; margin-bottom: 10px;">&#28155;&#21152; frontend</h3></caption>
 			<tr>
-				<td class="addName">Select server: </td>
+				<td class="addName">&#36873;&#25321;&#26381;&#21153;&#22120;: </td>
 				<td class="addOption">
 					<select required name="serv" id="serv2">
-						<option disabled selected>Choose server</option>
+						<option disabled selected>&#36873;&#25321;&#26381;&#21153;&#22120;</option>
 						{% for select in selects %}
 							<option value="{{ select.2 }}">{{ select.1 }}</option>
 						{% endfor %}
@@ -264,21 +264,22 @@
 				</td>
 			</tr>
 		<tr>
-			<td class="addName">Name:</td>
+			<td class="addName">&#21517;&#31216;:</td>
 			<td class="addOption">
-				<input type="text" name="frontend" id="new_frontend" required title="Name frontend"  placeholder="web_80" class="form-control">
+				<input type="text" name="frontend" id="new_frontend" required title="frontend &#21517;&#31216;"  placeholder="web_80" class="form-control">
 			</td>
 		</tr>
 		<tr>
-			<td class="addName">IP and Port:</td>
+			<td class="addName">IP : &#31471;&#21475;</td>
 			<td class="addOption">
-				<input type="text" name="ip" id="ip1" size="15" placeholder="Any" class="form-control"><b>:</b>
-				<input type="number" name="port" required title="Port for bind frontend" placeholder="8080" class="form-control">
-				<div class="tooltip tooltipTop">IP for bind listner, <b>if empty will be assignet on all IPs</b>. Start typing ip, or press down.<br>If you use <b>VRRP keep in blank</b>. If you assign an IP, the slave will not start</div>
+				<input type="text" name="ip" id="ip1" size="15" placeholder="&#20219;&#24847;" class="form-control"><b>:</b>
+				<input type="number" name="port" required title="&#32465;&#23450; frontend &#30340;&#31471;&#21475;" placeholder="8080" class="form-control">
+				<div class="tooltip tooltipTop">&#32465;&#23450;&#30340;&#73;&#80;&#22320;&#22336;, <b>&#22914;&#26524;&#20026;&#31354;&#21017;&#32465;&#23450;&#25152;&#26377;&#73;&#80;&#22320;&#22336;</b>&#36755;&#20837;&#73;&#80;&#22320;&#22336;&#25110;&#32773;&#25353;&#19979;&#26041;&#21521;&#38190;&#36873;&#25321;&#12290;<br>&#22914;&#26524;<b>&#20351;&#29992;&#32;&#86;&#65;&#82;&#80;&#32;&#21017;&#20445;&#25345;&#31354;</b>&#12290;&#22914;&#26524;&#25351;&#23450;&#73;&#80;&#65292;&#21017;&#20174;&#23646;&#26381;&#21153;&#22120;&#19981;&#20250;&#21551;&#21160;</div>
+
 			</td>
 		</tr>
 		<tr class="advance">
-			<td class="addName">Mode: </td>
+			<td class="addName">&#27169;&#24335;: </td>
 			<td class="addOption">
 				<select required name="mode" id="frontend-mode-select">
 					<option value="http" selected>http</option>
@@ -295,38 +296,38 @@
 			</td>
 		</tr>
 		<tr class="advance">
-			<td class="addName">Maxconn: </td>
+			<td class="addName">&#26368;&#22823;&#36830;&#25509;&#25968;: </td>
 			<td class="addOption">
-				<input type="number" name="maxconn" required title="Fix the maximum number of concurrent connections on a frontend" size="5" value="2000" class="form-control">
-				<div class="tooltip tooltipTop">This value should not exceed the global maxconn. Default global maxconn value: 2000</div>
+				<input type="number" name="maxconn" required title="&#20462;&#22797;&#21069;&#31471;&#30340;&#24182;&#21457;&#36830;&#25509;&#30340;&#26368;&#22823;&#25968;&#37327;" size="5" value="2000" class="form-control">
+				<div class="tooltip tooltipTop">&#36825;&#20010;&#25968;&#20540;&#19981;&#33021;&#36229;&#36807;&#20840;&#23616;&#26368;&#22823;&#36830;&#25509;&#25968;&#12290;&#40664;&#35748;&#20840;&#23616;&#26368;&#22823;&#36830;&#25509;&#25968;&#65306;&#50;&#48;&#48;&#48;</div>
 			</td>
 		</tr>
 		<tr class="advance">
-			<td class="addName"><span title="Cache support start 1.8 and latter">Web acceleration(?):</span></td>
+			<td class="addName"><span title="&#32531;&#23384;&#21387;&#32553;&#27604;&#29575;&#49;&#46;&#56;&#25110;&#26356;&#39640;">Web &#21152;&#36895;(?):</span></td>
 			<td class="addOption">
 				<span class="controlgroup">	
-					<label for="compression2" title="Enable Compression">Compression</label><input type="checkbox" id="compression2" name="compression" value="1">
-					<label for="cache2" title="Enable Compression">Cache</label><input type="checkbox" id="cache2" name="cache" value="2">
-					<label for="ssl_offloading1" title="Enable SSL Offloading">SSL Offloading</label><input type="checkbox" id="ssl_offloading1">
+					<label for="compression2" title="&#21551;&#29992; Compression">Compression</label><input type="checkbox" id="compression2" name="compression" value="1">
+					<label for="cache2" title="&#21551;&#29992; Compression">Cache</label><input type="checkbox" id="cache2" name="cache" value="2">
+					<label for="ssl_offloading1" title="&#21551;&#29992; SSL Offloading">SSL Offloading</label><input type="checkbox" id="ssl_offloading1">
 				</span>	
 			</td>
 		</tr>
 		<tr class="advance">
-			<td class="addName"><span title="Web application firewall">WAF(?):</span></td>
+			<td class="addName"><span title="Web &#24212;&#29992;&#38450;&#28779;&#22681;">WAF(?):</span></td>
 			<td class="addOption">
 				<span class="controlgroup">
-					<label for="slow_atack1" title="Slow atack protect">Slow atack</label><input type="checkbox" id="slow_atack1">
-					<label for="ddos1" title="DDOS atack protect">DDOS</label><input type="checkbox" id="ddos1">
-					<label for="blacklist_checkbox1" title="Enable SSL Offloading">Blacklist</label><input type="checkbox" id="blacklist_checkbox1">
+					<label for="slow_atack1" title="Slow atack &#20445;&#25252;">Slow atack</label><input type="checkbox" id="slow_atack1">
+					<label for="ddos1" title="DDOS atack &#20445;&#25252;">DDOS</label><input type="checkbox" id="ddos1">
+					<label for="blacklist_checkbox1" title="&#40657;&#21517;&#21333;">Blacklist</label><input type="checkbox" id="blacklist_checkbox1">
 				</span>
 				<div id="blacklist-hide1" style="display: none;">
-					<br /><span class="tooltip tooltipTop">Enter the name of the blacklist, or press down:</span><br />
+					<br /><span class="tooltip tooltipTop">&#36755;&#20837;&#40657;&#21517;&#21333;&#30340;&#21517;&#31216;&#25110;&#32773;&#25353;&#19979;&#26041;&#21521;&#38190;&#36873;&#25321;:</span><br />
 					<input type="text" name="blacklist" placeholder="blacklist.lst" class="form-control" size="39" id="blacklist-hide-input1"><br />
 				</div>
 			</td>
 		</tr>
 		<tr class="advance">
-			<td class="addName">Optinons:</td>
+			<td class="addName">&#36873;&#39033;:</td>
 			<td class="addOption">
 				<span class="controlgroup">
 					<label for="forward_for1" title="Option Forward for if none">Forward for</label><input type="checkbox" id="forward_for1">					
@@ -352,7 +353,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="addName">Default backend</td>
+			<td class="addName">&#40664;&#35748; backend</td>
 			<td class="addOption">
 				<div style="font-size: 12px; padding-bottom: 10px;">Start typing backend, or press down</div>
 				<input  name="backend" id="backends" required size="30" placeholder="some_backend" class="form-control">
@@ -427,7 +428,7 @@
 			</td>
 		</tr>
 		<tr class="advance">
-			<td class="addName">Balance: </td>
+			<td class="addName">&#36127;&#36733;&#22343;&#34913;&#27169;&#24335;: </td>
 			<td class="addOption">
 				<select required name="balance">
 					<option value="roundrobin" selected>roundrobin</option>
@@ -442,18 +443,18 @@
 			<td class="addName"><span title="Cache support start 1.8 and latter">Web acceleration(?):</span></td>
 			<td class="addOption">
 				<span class="controlgroup">
-					<label for="compression3" title="Enable Compression">Compression</label><input type="checkbox" id="compression3" name="compression" value="1">
-					<label for="cache3" title="Enable Compression">Cache</label><input type="checkbox" id="cache3" name="cache" value="2">
-					<label for="ssl_offloading2" title="Enable SSL Offloading">SSL Offloading</label><input type="checkbox" id="ssl_offloading2">
+					<label for="compression3" title="&#21551;&#29992; Compression">Compression</label><input type="checkbox" id="compression3" name="compression" value="1">
+					<label for="cache3" title="&#21551;&#29992; Compression">Cache</label><input type="checkbox" id="cache3" name="cache" value="2">
+					<label for="ssl_offloading2" title="&#21551;&#29992; SSL Offloading">SSL Offloading</label><input type="checkbox" id="ssl_offloading2">
 				</span>
 			</td>
 		</tr>
 		<tr class="advance">
-			<td class="addName">Optinons:</td>
+			<td class="addName">&#36873;&#39033;:</td>
 			<td class="addOption">
 				<span class="controlgroup">					
 					<label for="forward_for2" title="Option Forward for if none">Forward for</label><input type="checkbox" id="forward_for2">
-					<label for="redispatch2" title="Enable Redispatch">Redispatch</label><input type="checkbox" id="redispatch2">				
+					<label for="redispatch2" title="&#21551;&#29992; Redispatch">Redispatch</label><input type="checkbox" id="redispatch2">				
 					<select name="force_close" class="force_close">
 						<option disabled selected>Force HTTP close</option>
 						<option>Off</option>
@@ -461,7 +462,7 @@
 						<option value="2">Force close</option>
 						<option value="3">Pretend keep alive</option>
 					</select>	
-					<label for="cookie2" title="Enable Redispatch">Set cookie</label><input type="checkbox" id="cookie2" name="cookie" value="1">				
+					<label for="cookie2" title="&#21551;&#29992; Redispatch">Set cookie</label><input type="checkbox" id="cookie2" name="cookie" value="1">				
 					<label for="options-backend-show" title="Set options manualy">Set options</label><input type="checkbox" id="options-backend-show">
 				</span>
 				<br>

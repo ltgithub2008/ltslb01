@@ -2,15 +2,15 @@
 {% block content %}
 	<table class="overview">
 		<tr class="overviewHead">
-			<td class="padding10 first-collumn">New black list</th>
-			<td>Exists black lists</th>
-			<td class="padding10 first-collumn">New white list</th>
-			<td>Exists white lists</th>
+			<td class="padding10 first-collumn">&#26032;&#24314;&#40657;&#21517;&#21333;</th>
+			<td>&#24050;&#26377;&#40657;&#21517;&#21333;</th>
+			<td class="padding10 first-collumn">&#26032;&#24314;&#30333;&#21517;&#21333;</th>
+			<td>&#24050;&#26377;&#30333;&#21517;&#21333;</th>
 		</tr>
 		<tr>
 			<td class="padding10 first-collumn" style="width: 25%;">
-				Name: <input type="text" id="new_blacklist_name" class="form-control">
-				<button onclick="createList('black')">Create</button>
+				&#21517;&#31216;: <input type="text" id="new_blacklist_name" class="form-control">
+				<button onclick="createList('black')">&#21019;&#24314;</button>
 			</td>
 			<td style="width: 30%;">
 				{% for list in black_lists %}
@@ -18,8 +18,8 @@
 				{% endfor %}
 			</td>
 			<td class="padding10 first-collumn" style="width: 25%;">
-				Name: <input type="text" id="new_whitelist_name" class="form-control">
-				<button onclick="createList( 'white')">Create</button>
+				&#21517;&#31216;: <input type="text" id="new_whitelist_name" class="form-control">
+				<button onclick="createList( 'white')">&#21019;&#24314;</button>
 			</td>
 			<td style="width: 30%;">
 				{% for list in white_lists %}
@@ -31,7 +31,7 @@
 	</table>
 	<div id="ajax"></div>
 	<div id="dialog-confirm" title="View certificate " style="display: none;">
-		<span><b>Note:</b>Each new address should be specified from a new line</span>
+		<span><b>&#27880;&#24847;:</b>&#73;&#80;&#22320;&#22336;&#20197;&#34892;&#20998;&#21106;</span>
 		<textarea id="edit_lists" cols=95 rows=20></textarea>
 	</div>	
 {% endblock %}

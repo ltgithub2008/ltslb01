@@ -5,6 +5,8 @@ import http.cookies
 import funct
 import sql
 from jinja2 import Environment, FileSystemLoader
+
+
 env = Environment(loader=FileSystemLoader('templates/'))
 template = env.get_template('metrics.html')
 
@@ -19,7 +21,7 @@ try:
 except:
 	pass
 
-template = template.render(h2 = 1, title = "Metrics",
+template = template.render(h2 = 1, title = "&#24230;&#37327;",
 							autorefresh = 1,
 							role = sql.get_user_role_by_uuid(user_id.value),
 							user = user,

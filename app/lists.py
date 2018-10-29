@@ -5,6 +5,10 @@ import http, cgi
 import funct
 import sql
 from jinja2 import Environment, FileSystemLoader
+
+import codecs, sys
+sys.stdout = codecs.getwriter('utf8')(sys.stdout.buffer)
+
 env = Environment(loader=FileSystemLoader('templates/'))
 template = env.get_template('lists.html')
 
@@ -43,7 +47,7 @@ white_lists = funct.get_files(dir=white_dir, format="lst")
 black_lists = funct.get_files(dir=black_dir, format="lst")
 
 template = template.render(h2 = 1,
-							title = "Lists",
+							title = "&#40657;&#21517;&#21333;&#47;&#30333;&#21517;&#21333;",
 							role = sql.get_user_role_by_uuid(user_id.value),
 							user = user,
 							white_lists = white_lists,

@@ -6,6 +6,8 @@ import funct
 import sql
 import http.cookies
 from jinja2 import Environment, FileSystemLoader
+
+
 env = Environment(loader=FileSystemLoader('templates/'))
 template = env.get_template('add.html')
 form = cgi.FieldStorage()

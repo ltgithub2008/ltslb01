@@ -6,6 +6,10 @@ import os
 import funct
 import sql
 from jinja2 import Environment, FileSystemLoader
+
+import codecs, sys
+sys.stdout = codecs.getwriter('utf8')(sys.stdout.buffer)
+
 env = Environment(loader=FileSystemLoader('templates/'))
 template = env.get_template('admin.html')
 form = cgi.FieldStorage()

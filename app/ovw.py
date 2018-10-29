@@ -4,6 +4,9 @@ import sql
 import asyncio
 import http.cookies
 from jinja2 import Environment, FileSystemLoader
+
+
+
 env = Environment(loader=FileSystemLoader('templates/ajax'),extensions=['jinja2.ext.loopcontrols', 'jinja2.ext.do'])
 cookie = http.cookies.SimpleCookie(os.environ.get("HTTP_COOKIE"))
 user_id = cookie.get('uuid')

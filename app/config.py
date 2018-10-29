@@ -6,6 +6,9 @@ import http.cookies
 import funct
 import sql
 from jinja2 import Environment, FileSystemLoader
+
+
+
 env = Environment(loader=FileSystemLoader('templates/'))
 template = env.get_template('config.html')
 
@@ -85,7 +88,7 @@ if serv is not None and form.getvalue('config') is not None:
 	os.system("/bin/rm -f " + hap_configs_dir + "*.old")
 
 print('Content-type: text/html\n')
-template = template.render(h2 = 1, title = "Working with HAProxy configs",
+template = template.render(h2 = 1, title = "HAProxy &#30456;&#20851;&#37197;&#32622;",
 							role = sql.get_user_role_by_uuid(user_id.value),
 							action = "config.py",
 							user = user,

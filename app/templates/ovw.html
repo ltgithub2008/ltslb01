@@ -6,14 +6,14 @@
 {% if role <= 1 %}
 	<table class="overview">
 		<tr class="overviewHead">
-			<td class="padding10 first-collumn">Login</td>
+			<td class="padding10 first-collumn">&#30331;&#24405;&#29992;&#25143;</td>
 			<td class="padding10 second-collumn">Email</td>
-			<td class="second-collumn">Group</td>
-			<td>Role</td>
+			<td class="second-collumn">&#32452;</td>
+			<td>&#35282;&#33394;</td>
 			<td class="padding10">
 				<span class="add-button">
-					<a title="Show all users" id="show-all-users" style="color: #fff">
-						Show all
+					<a title="&#26174;&#31034;&#20840;&#37096;&#29992;&#25143;" id="show-all-users" style="color: #fff">
+						&#20840;&#37096;&#26174;&#31034;
 					</a>
 				</span>
 			</td>
@@ -51,37 +51,37 @@
 	<table class="overview">
 	<tr class="overviewHead">	
 		<th class="padding10 first-collumn" colspan=4>
-			Tools status
+			&#29366;&#24577;&#20449;&#24687;
 		</th>
 	</tr>
 	
 	<tr>
 		<td class="padding10 first-collumn">
 		{% if metrics_master|int() >= 1 %}
-			<span title="running {{ metrics_master }} master processes"><span class="serverUp"> UP</span> Metrics master</span>
+			<span title="&#27491;&#22312;&#36816;&#34892; {{ metrics_master }} &#20010;&#20027;&#36827;&#31243;"><span class="serverUp">&#27491;&#22312;&#36816;&#34892;</span> &#20027;&#36827;&#31243;&#24230;&#37327;</span>
 		{% else %}
-			<span title="running {{ metrics_master }} master processes"><span class="serverDown"> DOWN</span> running {{metrics_master }} master processes
+			<span title="&#27491;&#22312;&#36816;&#34892; {{ metrics_master }} &#20010;&#20027;&#36827;&#31243;"><span class="serverDown">&#24050;&#20572;&#27490;</span> &#27491;&#22312;&#36816;&#34892; {{metrics_master }} &#20010;&#20027;&#36827;&#31243;
 		{% endif %}
 		</td>
 		<td class="padding10 second-collumn">
 		{% if metrics_worker|int() >= 1 %}
-			<span title="running {{metrics_worker}} worker processes"><span class="serverUp"> UP</span> Metrics workers</span>
+			<span title="&#27491;&#22312;&#36816;&#34892; {{metrics_worker}} &#20010;&#24037;&#20316;&#36827;&#31243;"><span class="serverUp">&#27491;&#22312;&#36816;&#34892;</span> &#24037;&#20316;&#36827;&#31243;&#24230;&#37327;</span>
 		{% else %}
-			<span title="running {{metrics_worker}} worker processes"><span class="serverDown"> DOWN</span> Metrics workers</span>
+			<span title="&#27491;&#22312;&#36816;&#34892; {{metrics_worker}} &#20010;&#24037;&#20316;&#36827;&#31243;"><span class="serverDown">&#24050;&#20572;&#27490;</span> &#24037;&#20316;&#36827;&#31243;&#24230;&#37327;</span>
 		{% endif %}
 		</td>
 		<td class="third-collumn">
 		{% if checker_master|int() >= 1 %}
-			<span title="running {{ checker_master }} master processes"><span class="serverUp"> UP</span> Checker master</span>
+			<span title="&#27491;&#22312;&#36816;&#34892; {{ checker_master }} &#20010;&#20027;&#36827;&#31243;"><span class="serverUp">&#27491;&#22312;&#36816;&#34892;</span> &#20027;&#36827;&#31243;&#26816;&#26597;&#22120;</span>
 		{% else %}
-			<span title="running {{ checker_master }} master processes"><span class="serverDown"> DOWN</span> Checker master</span>
+			<span title="&#27491;&#22312;&#36816;&#34892; {{ checker_master }} &#20010;&#20027;&#36827;&#31243;"><span class="serverDown">&#24050;&#20572;&#27490;</span> &#20027;&#36827;&#31243;&#26816;&#26597;&#22120;</span>
 		{% endif %}
 		</td>
 		<td>
 		{% if checker_worker|int() >= 1 %}
-			<span title="running {{ checker_worker }} worker processes"><span class="serverUp"> UP</span> Checker workers</span>
+			<span title="&#27491;&#22312;&#36816;&#34892; {{ checker_worker }} &#20010;&#24037;&#20316;&#36827;&#31243;"><span class="serverUp">&#27491;&#22312;&#36816;&#34892;</span> &#24037;&#20316;&#36827;&#31243;&#26816;&#26597;&#22120;</span>
 		{% else %}
-			<span title="running {{ checker_worker }} worker processes"><span class="serverDown"> DOWN</span> Checker workers</span>
+			<span title="&#27491;&#22312;&#36816;&#34892; {{ checker_worker }} &#20010;&#24037;&#20316;&#36827;&#31243;"><span class="serverDown">&#24050;&#20572;&#27490;</span> &#24037;&#20316;&#36827;&#31243;&#26816;&#26597;&#22120;</span>
 		{% endif %}
 		</td>
 	</tr>
@@ -90,16 +90,16 @@
 <table class="overview">
 	<tr class="overviewHead">
 		<td class="padding10 first-collumn">
-			Server
+			&#26381;&#21153;&#22120;
 		</td class="padding10 second-collumn">
 		<td class="padding10 second-collumn">
-			HAproxy status
+			HAproxy &#29366;&#24577;
 		</td>
 		<td class="padding10  third-collumn">
-			Action
+			&#27963;&#21160;
 		</td>
 		<td class="padding10">
-			Last edit
+			&#26368;&#21518;&#19968;&#27425;&#20462;&#25913;
 		</td  class="padding10">
 		<td>
 			<a onclick="showOverview()" title="Refresh" style="float: right; margin-right: 25px;"><img  src="/image/pic/update.png" alt="restart" class="icon"></a>
@@ -110,16 +110,16 @@
 <table class="overview">
 	<tr class="overviewHead">
 		<td class="padding10 first-collumn">
-			Server
+			&#26381;&#21153;&#22120;
 		</td class="padding10 second-collumn">
 		<td class="padding10 second-collumn">
-			WAF status
+			WAF &#29366;&#24577;
 		</td>
 		<td class="padding10  third-collumn">
-			Action
+			&#27963;&#21160;
 		</td>
 		<td class="padding10">
-			WAF mode
+			WAF &#27169;&#24335;
 		</td  class="padding10">
 		<td>
 			<a onclick="showOverviewWaf()" title="Refresh" style="float: right; margin-right: 25px;"><img  src="/image/pic/update.png" alt="restart" class="icon"></a>
@@ -130,16 +130,16 @@
 <table class="overview" >
 	<tr class="overviewHead">
 		<td class="padding10 first-collumn">
-			Server
+			&#26381;&#21153;&#22120;
 		</td>
 		<td class="padding10 second-collumn">
-			HAproxy info
+			HAproxy &#20449;&#24687;
 		</td>
 		<td  class="padding10 third-collumn">
-			Server status
+			&#26381;&#21153;&#22120;&#29366;&#24577;
 		</td>
 		<td class="padding10">
-			Front/Back-ends
+			&#21069; &#47; &#21518;&#31471;
 		</td>
 		<td>
 			<a onclick="showOverviewServers()" title="Refresh Server Info" style="float: right; margin-right: 25px;"><img  src="/image/pic/update.png" alt="restart" class="icon"></a>
@@ -148,7 +148,7 @@
 <tbody id="ajaxservers"></tbody>
 </table>
 <div id="dialog-confirm" style="display: none;">
-  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:3px 12px 20px 0;"></span>Are you sure?</p>
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:3px 12px 20px 0;"></span>&#30830;&#35748; ?</p>
 </div>
 <script>
 	window.onload = showOverview()

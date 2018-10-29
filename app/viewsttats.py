@@ -4,6 +4,10 @@ import cgi
 import funct
 import sql
 from jinja2 import Environment, FileSystemLoader
+
+import codecs, sys
+sys.stdout = codecs.getwriter('utf8')(sys.stdout.buffer)
+
 env = Environment(loader=FileSystemLoader('templates/'))
 template = env.get_template('viewstats.html')
 form = cgi.FieldStorage()
@@ -30,7 +34,7 @@ except:
 	
 output_from_parsed_template = template.render(h2 = 1,
 												autorefresh = 1,
-												title = "HAProxy statistics",
+												title = "HAProxy &#32479;&#35745;&#25968;&#25454;",
 												role = role,
 												user = user,
 												onclick = "showStats()",

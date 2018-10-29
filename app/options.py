@@ -7,6 +7,7 @@ import funct
 import sql
 import ovw
 
+
 form = cgi.FieldStorage()
 serv = form.getvalue('serv')
 act = form.getvalue('act')
@@ -242,7 +243,7 @@ if serv is not None and form.getvalue('rows1') is not None:
 		cmd="cat %s| awk '$4>\"%s:00\" && $4<\"%s:00\"' |tail -%s  %s %s" % (apache_log_path+"/"+serv, date, date1, rows, grep_act, grep)
 
 	output, stderr = funct.subprocess_execute(cmd)
-
+	
 	funct.show_log(output)
 	print(stderr)
 		
@@ -329,7 +330,7 @@ if serv is not None and act == "configShow":
 		cfg = hap_configs_dir + form.getvalue('configver')
 			
 	try:
-		conf = open(cfg, "r")
+		conf = open(cfg, "r",encoding= 'utf8')
 	except IOError:
 		print('<div class="alert alert-danger">Can\'t read import config file</div>')
 		
@@ -528,7 +529,7 @@ if form.getvalue('waf_metrics'):
 		df.sort_index(inplace=True)
 		source = ColumnDataSource(df)
 		
-		output_file("templates/metrics_waf_out.html")
+		output_file("templates/metric_waf.html")
 		
 		x_min = df.index.min() - pd.Timedelta(hours=1)
 		x_max = df.index.max() + pd.Timedelta(minutes=1)

@@ -5,6 +5,8 @@ import funct
 import sql
 import os, http
 from jinja2 import Environment, FileSystemLoader
+
+
 env = Environment(loader=FileSystemLoader('templates/'))
 template = env.get_template('logs.html')
 form = cgi.FieldStorage()
@@ -33,7 +35,7 @@ except:
 
 output_from_parsed_template = template.render(h2 = 1,
 												autorefresh = 1,
-												title = "Show logs",
+												title = "&#26174;&#31034;&#26085;&#24535;&#20449;&#24687;",
 												role = sql.get_user_role_by_uuid(user_id.value),
 												user = user,
 												onclick = "showLog()",

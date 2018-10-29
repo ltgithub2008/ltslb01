@@ -5,6 +5,8 @@ import os, http.cookies
 import funct
 import sql
 from jinja2 import Environment, FileSystemLoader
+
+
 env = Environment(loader=FileSystemLoader('templates/'))
 template = env.get_template('configver.html')
 

@@ -9,6 +9,7 @@ sys.path.append(os.path.join(sys.path[0], os.getcwd()))
 import sql
 import signal
 
+
 class GracefulKiller:
 	kill_now = False
 	def __init__(self):

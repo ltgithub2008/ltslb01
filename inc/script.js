@@ -1305,7 +1305,7 @@ $( function() {
 			}
 		} );
 	});
-	var add_server_var = '<br /><input name="servers" title="Backend port" size=14 placeholder="xxx.xxx.xxx.xxx" class="form-control">: <input name="server_port" title="Backend port" size=1 placeholder="yyy" class="form-control">'
+	var add_server_var = '<br /><input name="servers" title="IP" size=14 placeholder="xxx.xxx.xxx.xxx" class="form-control">: <input name="server_port" title="&#31471;&#21475;" size=1 placeholder="yyy" class="form-control">'
 	$('#add-server-input').click(function() {
 		$('#servers').append(add_server_var);		
 	});

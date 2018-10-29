@@ -4,9 +4,6 @@ import cgi
 import create_db
 import funct
 
-import codecs, sys
-sys.stdout = codecs.getwriter('utf8')(sys.stdout.buffer)
-
 mysql_enable = funct.get_config_var('mysql', 'enable')
 
 if mysql_enable == '1':

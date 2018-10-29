@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+<center>
+	<h3>Choose server</h3>
+	<p>
+		<form action="{{ action }}" method="get">
+			<select autofocus required name="serv" id="{{ select_id }}">
+				<option disabled>Choose server</option>
+					{% for select in selects %}
+						{% if keepalived %}
+							{% if select.1 == serv %}
+								<option value="{{ select.1 }}" selected>{{ select.0 }}</option>								
+							{% else %}
+								<option value="{{ select.1 }}">{{ select.0 }}</option>								
+							{% endif %}
+							{% if select.3 == serv %}
+								<option value="{{ select.3 }}" selected>{{ select.2 }}</option>
+							{% else %}
+								<option value="{{ select.3 }}">{{ select.2 }}</option>
+							{% endif %}
+						{% else %}
+							{% if select.2 == serv %}
+								<option value="{{ select.2 }}" selected>{{ select.1 }}</option>
+							{% else %}
+								<option value="{{ select.2 }}">{{ select.1 }}</option>
+							{% endif %}
+						{% endif %}
+					{% endfor %}
+			</select>
+			{% if role <= 2 %}
+				<button type="submit" value="open" name="open" class="btn btn-default" title="Edit running config">Edit</button>
+			{% endif %}
+			{% if not keepalived %}
+				<a class="ui-button ui-widget ui-corner-all" title="Show running config" onclick="showConfig()">Show</a>	
+				<a class="ui-button ui-widget ui-corner-all" title="Compare configs" onclick="showCompareConfigs()">Compare</a>	
+				<a class="ui-button ui-widget ui-corner-all" title="Show map" onclick="showMap()">Map</a>	
+			{% endif %}
+		</form>
+	</p>
+	{% if not aftersave %}
+		{% if stderr or error %}
+			<div class="alert alert-danger" style="margin-bottom: 10px;">
+				Some errors:
+				<br> 
+				<br> 
+				{{stderr}} 
+				{{error}} 
+			</div>
+		{% endif %}
+	{% endif %}
+	{% if config %}
+		{% if role <= 2 %}
+			<div id="config">
+				{% if note %}
+					<div class="alert alert-info"><b>Note:</b> If you reconfigure Master server, Slave will reconfigured automatically</div>
+				{% endif %}
+				<h3>Config from {{ serv }}</h3>
+				<form action="{{ action }}" name="saveconfig" method="get">
+					<input type="hidden" value="{{ serv }}" name="serv"> 
+					<input type="hidden" value="{{ cfg }}.old" name="oldconfig"> 
+					<textarea name="config" class="config" rows="35" cols="100">{{ config }}</textarea> 
+					<p>
+						<button type="submit" value="save" name="save" class="btn btn-default">Just save</button>
+						<button type="submit" value="" name="" class="btn btn-default">Save and restart</button>
+					</p>
+				</form>
+			</div>
+		{% endif %}
+	{% endif %}
+	{% if aftersave %}
+		<div class="alert alert-info">New config was saved as: {{ cfg }} </div>
+		{% if stderr or error %}
+			<div class="alert alert-danger">
+				Some errors:
+				<br> 
+				<br> 
+					{{stderr}} 
+					{{error}} 
+			</div>
+		{% else %}
+			<div class="alert alert-success">Config ok</div>
+			<a href="viewsttats.py?serv={{ serv }}" target="_blank" title="View stats">Go to view stats</a>
+		{% endif %}
+		<script>window.history.pushState("Config", "Config", cur_url[0])</script>
+	{% endif %}
+	</center>
+{% endblock %}

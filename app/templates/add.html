@@ -1,0 +1,637 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="tabs">
+	<ul>
+		<li><a href="#listen">Listen</a></li>
+		<li><a href="#frontend">Frontend</a></li>
+		<li><a href="#backend">Backend</a></li>
+		<li><a href="#ssl">SSL certificates</a></li>
+		{% if user %}
+			<a href=/app/login.py?logout=logout title="Logout, user name: {{ user }}" class="login"> Logout</a>						
+		{% else %}
+			<a href=/app/login.py title="Login" class="login"> Login</a>
+		{% endif %}
+	</ul>
+	<div id="listen">
+		<form name="add-listner" action="/app/add.py">
+		<table class="add-table">
+			<caption><h3 style="margin-left: 20px; margin-bottom: 10px;">Add listen</h3></caption>
+				<tr>
+					<td class="addName">Select server: </td>
+					<td class="addOption">
+						<select required name="serv" id="serv">
+							<option disabled selected>Choose server</option>
+							{% for select in selects %}
+								<option value="{{ select.2 }}">{{ select.1 }}</option>
+							{% endfor %}	
+						</select>
+						<div class="tooltip tooltipTop"><b>Note:</b> If you reconfigure Master server, Slave will reconfigured automatically</div>
+					</td>
+					<td rowspan="5" class="add-note addName">
+						A "listen" section defines a complete proxy with its frontend and backend parts combined in one section. It is generally useful for TCP-only traffic.
+						<br /><br />
+						All proxy names must be formed from upper and lower case letters, digits,
+						'-' (dash), '_' (underscore) , '.' (dot) and ':' (colon). ACL names are
+						case-sensitive, which means that "www" and "WWW" are two different proxies.
+						<br /><br />
+						Historically, all proxy names could overlap, it just caused troubles in the
+						logs. Since the introduction of content switching, it is mandatory that two
+						proxies with overlapping capabilities (frontend/backend) have different names.
+						However, it is still permitted that a frontend and a backend share the same
+						name, as this configuration seems to be commonly encountered.
+					</td>
+				</tr>
+		<tr>
+			<td class="addName">Name:</td>
+			<td class="addOption">
+				<input type="text" name="listner" id="name" required title="Name Listner" placeholder="web_80" class="form-control">
+			</td>
+		</tr>
+		<tr>
+			<td class="addName">IP and Port:</td>
+			<td class="addOption">
+				<input type="text" name="ip" id="ip" title="" size="15" placeholder="Any" class="form-control"><b>:</b>
+				<input type="number" name="port" id="listen-port" required title="Port for bind listen" size="5" placeholder="8080" class="form-control">
+				<div class="tooltip tooltipTop">IP for bind listner, <b>if empty will be assignet on all IPs</b>. Start typing ip, or press down.<br>If you use <b>VRRP keep in blank</b>. If you assign an IP, the slave will not start</div>
+			</td>
+		</tr>
+		<tr class="advance">
+			<td class="addName">Mode: </td>
+			<td class="addOption">
+				<select required name="mode" id="listen-mode-select">
+					<option value="http" selected>http</option>
+					<option value="tcp">tcp</option>
+				</select>
+				<span id="https-listen-span">
+					<label for="https-listen" style="margin-top: 5px;" title="Enable ssl">ssl?</label>
+					<input type="checkbox" id="https-listen" name="ssl" value="https" >
+				</span>
+				<div id="https-hide-listen" style="display: none;">
+					<br /><span class="tooltip tooltipTop">Enter name to pem file, or press down:</span><br />
+					<input type="text" name="cert" placeholder="some_cert.pem" class="form-control" size="39" id="path-cert-listen"><br />
+					<label for="ssl-check-listen" style="margin-top: 5px;">Disable ssl verify on servers?</label><input type="checkbox" id="ssl-check-listen" name="ssl-check" value="ssl-check" checked>
+				</div>
+			</td>
+		</tr>
+		<tr class="advance">
+			<td class="addName">Maxconn: </td>
+			<td class="addOption">
+				<input type="number" name="maxconn" required title="Fix the maximum number of concurrent connections on a frontend" size="5" value="2000" class="form-control">
+				<div class="tooltip tooltipTop">This value should not exceed the global maxconn. Default global maxconn value: 2000</div>
+			</td>
+		</tr>
+		<tr class="advance">
+			<td class="addName">Balance: </td>
+			<td class="addOption">
+				<select required name="balance">
+					<option value="roundrobin" selected>roundrobin</option>
+					<option value="source">source</option>
+					<option value="leastconn">leastconn</option>
+					<option value="first">first</option>
+					<option value="rdp-cookie">rdp-cookie</option>
+				</select>
+			</td>
+		</tr>
+		<tr class="advance">
+			<td class="addName"><span title="Cache support start 1.8 and latter">Web acceleration(?):</span></td>
+			<td class="addOption">
+				<span class="controlgroup">	
+					<label for="compression" title="Enable Compression">Compression</label><input type="checkbox" id="compression" name="compression" value="1">
+					<label for="cache" title="Enable Compression">Cache</label><input type="checkbox" id="cache" name="cache" value="2">
+					<label for="ssl_offloading" title="Enable SSL Offloading">SSL Offloading</label><input type="checkbox" id="ssl_offloading">
+				</span>
+			</td>
+		</tr>
+		<tr class="advance">
+			<td class="addName"><span title="Web application firewall">WAF(?):</span></td>
+			<td class="addOption">
+				<span class="controlgroup">
+					<label for="slow_atack" title="Slow atack protect">Slow atack</label><input type="checkbox" id="slow_atack">
+					<label for="ddos" title="DDOS atack protect">DDOS</label><input type="checkbox" id="ddos">
+					<label for="blacklist_checkbox" title="Enable SSL Offloading">Blacklist</label><input type="checkbox" id="blacklist_checkbox">
+					<label for="waf" title="Web application firewall">WAF</label><input type="checkbox" id="waf" name="waf" value="1">
+				</span>
+				<div id="blacklist-hide" style="display: none;">
+					<br /><span class="tooltip tooltipTop">Enter the name of the blacklist, or press down:</span><br />
+					<input type="text" name="blacklist" placeholder="blacklist.lst" class="form-control" size="39" id="blacklist-hide-input"><br />
+				</div>
+			</td>
+		</tr>
+		<tr class="advance">
+			<td class="addName">Optinons:</td>
+			<td class="addOption">
+				<span class="controlgroup">				
+					<label for="forward_for" title="Option Forward for if none">Forward for</label><input type="checkbox" id="forward_for">
+					<label for="redispatch" title="Enable Redispatch">Redispatch</label><input type="checkbox" id="redispatch">					
+					<select name="force_close" class="force_close">
+						<option disabled selected>Force HTTP close</option>
+						<option>Off</option>
+						<option value="1">Server only</option>
+						<option value="2">Force close</option>
+						<option value="3">Pretend keep alive</option>
+					</select>	
+					<label for="cookie" title="Enable Redispatch">Set cookie</label><input type="checkbox" id="cookie" name="cookie" value="1">
+					<label for="options-listen-show" title="Set options manualy">Set options</label><input type="checkbox" id="options-listen-show">
+				</span>
+				<br>
+				<span id="cookie_div" style="display: none;">
+					<input type="text" placeholder="name" name="cookie_name" id="cookie_name" class="form-control"><br><br>
+					<input type="text" placeholder="domain" name="cookie_domain" class="form-control"><br><br>
+					<span class="controlgroup">
+						<select name="rewrite" id="rewrite" class="force_close">
+							<option disabled selected>rewrite/indirect/insert</option>
+							<option>None</option>
+							<option value="rewrite">rewrite</option>
+							<option value="indirect">indirect</option>
+							<option value="insert">insert</option>
+						</select>
+						<label for="prefix" title="This keyword indicates that instead of relying on a dedicated cookie for the persistence, an existing one will be completed.">prefix</label>
+						<input type="checkbox" name="prefix" value="prefix" id="prefix">
+						<label for="nocache" title="This option is recommended in conjunction with the insert mode when there is a cache between the client and HAProxy.">nocache</label>
+						<input type="checkbox" name="nocache" value="nocache" id="nocache">
+						<label for="postonly" title="This option ensures that cookie insertion will only be performed on responses to POST requests.">postonly</label>
+						<input type="checkbox" name="postonly" value="postonly" id="postonly">
+						<label for="dynamic" title="Activate dynamic cookies. When used, a session cookie is dynamically created for each server.">dynamic</label>
+						<input type="checkbox" name="dynamic" value="dynamic" id="dynamic">
+						<span id="dynamic_div" style="display: none;">
+							dynamic-cookie-key: <input type="text" placeholder="your-custom-key" name="dynamic-cookie-key" id="dynamic-cookie-key" class="form-control">
+						</span>
+					</span>
+				</span>
+				<div id="options-listen-show-div" style="display: none;">
+					<div class="tooltip">
+						<span style="padding-right: 10px;" class="form-control">Start typing options: </span>
+						<input type="text" id="options" class="form-control">
+						<span style="padding-left: 10px;">
+							or press down. <a href="http://cbonte.github.io/haproxy-dconv/1.7/configuration.html" target="_blanck" style="color: #23527c" title="HAproxy docs">Read more about options</a>
+						</span>
+					</div>
+					<textarea name="option" title="Options thru" id="optionsInput" cols=80 rows=5 placeholder="acl test hdr_beg(host) -i some_host"></textarea>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="addName">Servers:</td>
+			<td class="addOption">
+				<span id="servers">
+					<input name="servers" required title="Backend IP" size=14 placeholder="xxx.xxx.xxx.xxx" class="form-control">:
+					<input name="server_port" required title="Backend IP" size=1 placeholder="yyy" class="form-control">
+					<br />
+					<input name="servers" title="Backend port" size=14 placeholder="xxx.xxx.xxx.xxx" class="form-control">:
+					<input name="server_port" title="Backend port" size=1 placeholder="yyy" class="form-control">
+					<br />
+					<input name="servers" title="Backend port" size=14 placeholder="xxx.xxx.xxx.xxx" class="form-control">:
+					<input name="server_port" title="Backend port" size=1 placeholder="yyy" class="form-control">
+				</span>
+				<span>
+					<a class="add-server" id="add-server-input" title="Add backend server" style="cursor: pointer;"></a>
+				</span>
+			</td>
+		</tr>
+		<tr class="advance">
+			<td class="addName">Check:</td>
+			<td class="addOption">
+				<div>
+					<label for="controlgroup-listen-show" style="margin-top: 5px;" title="Change default check">Cusmot check params</label>
+					<input type="checkbox" id="controlgroup-listen-show" name="default-check" value="1">
+					<span class="tooltip tooltipTop"> Default params: inter 2000 rise 2 fall 5</span>
+				</div>
+				<div class="controlgroup" id="controlgroup-listen" style="display: none;">
+					<label for="check-servers-listen" title="Ebable servers check">Check</label>
+					<input type="checkbox" id="check-servers-listen" name="check-servers" checked value="1">
+					<select name="inter" id="inter-listen" class="force_close">
+						<option value="inter" disabled selected>inter</option>
+						<option value="1000">1000</option>
+						<option value="2000">2000</option>
+						<option value="3000">3000</option>
+					</select>
+					<select name="rise" id="rise-listen">
+						<option value="rise" disabled selected class="force_close">rise</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+					</select>
+					<select name="fall" id="fall-listen">
+						<option value="fall" disabled selected class="force_close">fall</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+					</select>
+				</div>
+			</td>
+		</tr>
+		<tr class="advance-show">
+			<td class="addName">Advanced:</td>
+			<td class="addOption"><a href="#" title="Show Advanced settings">Show Advanced settings</a></td>
+		</tr>
+		<tr>
+			<td class="addButton">
+				<button type="submit" value="" name="" class="btn btn-default">Add Listen</button>
+			</td>
+		</tr>
+		</form>
+		</table></div>
+		
+		<!-- Second tabs -->
+		
+	<div id="frontend">
+		<form name="add-frontend" action="/app/add.py">
+		<table>
+			<caption><h3 style="margin-left: 20px; margin-bottom: 10px;">Add frontend</h3></caption>
+			<tr>
+				<td class="addName">Select server: </td>
+				<td class="addOption">
+					<select required name="serv" id="serv2">
+						<option disabled selected>Choose server</option>
+						{% for select in selects %}
+							<option value="{{ select.2 }}">{{ select.1 }}</option>
+						{% endfor %}
+					</select>
+					<div class="tooltip tooltipTop"><b>Note:</b> If you reconfigure Master  server, Slave will reconfigured automatically</div>
+				</td>
+				<td rowspan="5" class="add-note addName">
+						A "frontend" section describes a set of listening sockets accepting client connections.
+						<br /><br />
+						All proxy names must be formed from upper and lower case letters, digits,
+						'-' (dash), '_' (underscore) , '.' (dot) and ':' (colon). ACL names are
+						case-sensitive, which means that "www" and "WWW" are two different proxies.
+						<br /><br />
+						Historically, all proxy names could overlap, it just caused troubles in the
+						logs. Since the introduction of content switching, it is mandatory that two
+						proxies with overlapping capabilities (frontend/backend) have different names.
+						However, it is still permitted that a frontend and a backend share the same
+						name, as this configuration seems to be commonly encountered.
+				</td>
+			</tr>
+		<tr>
+			<td class="addName">Name:</td>
+			<td class="addOption">
+				<input type="text" name="frontend" id="new_frontend" required title="Name frontend"  placeholder="web_80" class="form-control">
+			</td>
+		</tr>
+		<tr>
+			<td class="addName">IP and Port:</td>
+			<td class="addOption">
+				<input type="text" name="ip" id="ip1" size="15" placeholder="Any" class="form-control"><b>:</b>
+				<input type="number" name="port" required title="Port for bind frontend" placeholder="8080" class="form-control">
+				<div class="tooltip tooltipTop">IP for bind listner, <b>if empty will be assignet on all IPs</b>. Start typing ip, or press down.<br>If you use <b>VRRP keep in blank</b>. If you assign an IP, the slave will not start</div>
+			</td>
+		</tr>
+		<tr class="advance">
+			<td class="addName">Mode: </td>
+			<td class="addOption">
+				<select required name="mode" id="frontend-mode-select">
+					<option value="http" selected>http</option>
+					<option value="tcp">tcp</option>
+				</select>
+				<span id="https-frontend-span">
+					<label for="https-frontend" style="margin-top: 5px;">ssl?</label>
+					<input type="checkbox" id="https-frontend" name="ssl" value="https">
+				</span>
+				<div id="https-hide-frontend" style="display: none;">
+					<br /><span class="tooltip tooltipTop">Enter name to pem file, or press down:</span><br />
+					<input type="text" name="cert" placeholder="some_cert.pem" class="form-control" size="39" id="path-cert-frontend">					
+				</div>				
+			</td>
+		</tr>
+		<tr class="advance">
+			<td class="addName">Maxconn: </td>
+			<td class="addOption">
+				<input type="number" name="maxconn" required title="Fix the maximum number of concurrent connections on a frontend" size="5" value="2000" class="form-control">
+				<div class="tooltip tooltipTop">This value should not exceed the global maxconn. Default global maxconn value: 2000</div>
+			</td>
+		</tr>
+		<tr class="advance">
+			<td class="addName"><span title="Cache support start 1.8 and latter">Web acceleration(?):</span></td>
+			<td class="addOption">
+				<span class="controlgroup">	
+					<label for="compression2" title="Enable Compression">Compression</label><input type="checkbox" id="compression2" name="compression" value="1">
+					<label for="cache2" title="Enable Compression">Cache</label><input type="checkbox" id="cache2" name="cache" value="2">
+					<label for="ssl_offloading1" title="Enable SSL Offloading">SSL Offloading</label><input type="checkbox" id="ssl_offloading1">
+				</span>	
+			</td>
+		</tr>
+		<tr class="advance">
+			<td class="addName"><span title="Web application firewall">WAF(?):</span></td>
+			<td class="addOption">
+				<span class="controlgroup">
+					<label for="slow_atack1" title="Slow atack protect">Slow atack</label><input type="checkbox" id="slow_atack1">
+					<label for="ddos1" title="DDOS atack protect">DDOS</label><input type="checkbox" id="ddos1">
+					<label for="blacklist_checkbox1" title="Enable SSL Offloading">Blacklist</label><input type="checkbox" id="blacklist_checkbox1">
+				</span>
+				<div id="blacklist-hide1" style="display: none;">
+					<br /><span class="tooltip tooltipTop">Enter the name of the blacklist, or press down:</span><br />
+					<input type="text" name="blacklist" placeholder="blacklist.lst" class="form-control" size="39" id="blacklist-hide-input1"><br />
+				</div>
+			</td>
+		</tr>
+		<tr class="advance">
+			<td class="addName">Optinons:</td>
+			<td class="addOption">
+				<span class="controlgroup">
+					<label for="forward_for1" title="Option Forward for if none">Forward for</label><input type="checkbox" id="forward_for1">					
+					<select name="force_close" class="force_close">
+						<option disabled selected>Force HTTP close</option>
+						<option>Off</option>
+						<option value="1">Server only</option>
+						<option value="2">Force close</option>
+						<option value="3">Pretend keep alive</option>
+					</select>	
+					<label for="options-frontend-show" title="Set options manualy">Set options</label><input type="checkbox" id="options-frontend-show">
+				</span>
+				<div id="options-frontend-show-div" style="display: none;">
+					<div style="font-size: 12px; padding-bottom: 10px;">
+						<span style="padding-right: 10px;">Start typing options: </span>
+						<input type="text" id="options1" class="form-control">
+						<span style="padding-left: 10px;">
+							or press down. <a href="http://cbonte.github.io/haproxy-dconv/1.7/configuration.html" target="_blanck"  style="color: #23527c" title="HAproxy docs">Read more about options</a>
+						</span>
+					</div>
+					<textarea name="option" title="Options thru" cols=80 rows=5 id="optionsInput1" placeholder="acl test hdr_beg(host) -i some_host"></textarea>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="addName">Default backend</td>
+			<td class="addOption">
+				<div style="font-size: 12px; padding-bottom: 10px;">Start typing backend, or press down</div>
+				<input  name="backend" id="backends" required size="30" placeholder="some_backend" class="form-control">
+				<span style="font-size: 12px; padding-left: 10px;"> .</span>
+				<p style="font-size: 12px"><b>Note:</b> If backend don\t exist, you must <a href="#" style="color: #23527c"  title="Create backend" id="redirectBackend">create backend first</a>.</p>
+			</td>
+		</tr>
+		<tr class="advance-show">
+			<td class="addName">Advanced:</td>
+			<td class="addOption"><a href="#" title="Show Advanced settings">Show Advanced settings</a></td>
+		</tr>
+		<tr>
+			<td class="addButton">
+				<button type="submit" value="" name="" class="btn btn-default">Add Frontend</button>
+			</td>
+		</tr>
+		</form>
+		</table>
+	</div>
+				
+				<!-- Third tabs -->
+		
+	<div id="backend">
+		<form name="add-backend" action="/app/add.py">
+		<table>
+			<caption><h3 style="margin-left: 20px; margin-bottom: 10px;">Add backend</h3></caption>
+			<tr>
+				<td class="addName">Select server: </td>
+				<td class="addOption">
+					<select required name="serv" id="serv3">
+						<option disabled selected>Choose server</option>
+						{% for select in selects %}
+							<option value="{{ select.2 }}">{{ select.1 }}</option>
+						{% endfor %}
+					</select>
+					<div class="tooltip tooltipTop"><b>Note:</b> If you reconfigure Master server, Slave will reconfigured automatically</div>
+				</td>
+				<td rowspan="4" class="add-note addName">
+						A "backend" section describes a set of servers to which the proxy will connect to forward incoming connections.
+						<br /><br />
+						All proxy names must be formed from upper and lower case letters, digits,
+						'-' (dash), '_' (underscore) , '.' (dot) and ':' (colon). ACL names are
+						case-sensitive, which means that "www" and "WWW" are two different proxies.
+						<br /><br />
+						Historically, all proxy names could overlap, it just caused troubles in the
+						logs. Since the introduction of content switching, it is mandatory that two
+						proxies with overlapping capabilities (frontend/backend) have different names.
+						However, it is still permitted that a frontend and a backend share the same
+						name, as this configuration seems to be commonly encountered.
+				</td>
+			</tr>
+		<tr>
+			<td class="addName">Name:</td>
+			<td class="addOption">
+				<input type="text" name="new_backend" id="new_backend" required title="Name backend"  placeholder="web_80" class="form-control">
+			</td>
+		</tr>
+		<tr class="advance">
+			<td class="addName">Mode: </td>
+			<td class="addOption">
+				<select required name="mode" id="backend-mode-select">
+					<option value="http" selected>http</option>
+					<option value="tcp">tcp</option>
+				</select>
+				<span id="https-backend-span">
+					<label for="https-backend" style="margin-top: 5px;">Ssl enabled on frontend?</label>
+					<input type="checkbox" id="https-backend" name="ssl" value="https">
+				</span>
+				<div id="https-hide-backend" style="display: none;">
+					<label for="ssl-check" style="margin-top: 5px;">Disable ssl verify on servers?</label><input type="checkbox" id="ssl-check" name="ssl-check" value="ssl-check" checked>
+				</div>				
+			</td>
+		</tr>
+		<tr class="advance">
+			<td class="addName">Balance: </td>
+			<td class="addOption">
+				<select required name="balance">
+					<option value="roundrobin" selected>roundrobin</option>
+					<option value="source">source</option>
+					<option value="leastconn">leastconn</option>
+					<option value="first">first</option>
+					<option value="rdp-cookie">rdp-cookie</option>
+				</select>
+			</td>
+		</tr>
+		<tr class="advance">
+			<td class="addName"><span title="Cache support start 1.8 and latter">Web acceleration(?):</span></td>
+			<td class="addOption">
+				<span class="controlgroup">
+					<label for="compression3" title="Enable Compression">Compression</label><input type="checkbox" id="compression3" name="compression" value="1">
+					<label for="cache3" title="Enable Compression">Cache</label><input type="checkbox" id="cache3" name="cache" value="2">
+					<label for="ssl_offloading2" title="Enable SSL Offloading">SSL Offloading</label><input type="checkbox" id="ssl_offloading2">
+				</span>
+			</td>
+		</tr>
+		<tr class="advance">
+			<td class="addName">Optinons:</td>
+			<td class="addOption">
+				<span class="controlgroup">					
+					<label for="forward_for2" title="Option Forward for if none">Forward for</label><input type="checkbox" id="forward_for2">
+					<label for="redispatch2" title="Enable Redispatch">Redispatch</label><input type="checkbox" id="redispatch2">				
+					<select name="force_close" class="force_close">
+						<option disabled selected>Force HTTP close</option>
+						<option>Off</option>
+						<option value="1">Server only</option>
+						<option value="2">Force close</option>
+						<option value="3">Pretend keep alive</option>
+					</select>	
+					<label for="cookie2" title="Enable Redispatch">Set cookie</label><input type="checkbox" id="cookie2" name="cookie" value="1">				
+					<label for="options-backend-show" title="Set options manualy">Set options</label><input type="checkbox" id="options-backend-show">
+				</span>
+				<br>
+				<span id="cookie_div2" style="display: none;">
+					<input type="text" placeholder="name" name="cookie_name" id="cookie_name2" class="form-control"><br><br>
+					<input type="text" placeholder="domain" name="cookie_domain" class="form-control"><br><br>
+					<span class="controlgroup">
+						<select name="rewrite" id="rewrite2">
+							<option disabled selected>rewrite/indirect/insert</option>
+							<option>None</option>
+							<option value="rewrite">rewrite</option>
+							<option value="indirect">indirect</option>
+							<option value="insert">insert</option>
+						</select>
+						<label for="prefix2" title="This keyword indicates that instead of relying on a dedicated cookie for the persistence, an existing one will be completed.">prefix</label>
+						<input type="checkbox" name="prefix" value="prefix" id="prefix2">
+						<label for="nocache2" title="This option is recommended in conjunction with the insert mode when there is a cache between the client and HAProxy.">nocache</label>
+						<input type="checkbox" name="nocache" value="nocache" id="nocache2">
+						<label for="postonly2" title="This option ensures that cookie insertion will only be performed on responses to POST requests..">postonly</label>
+						<input type="checkbox" name="postonly" value="postonly" id="postonly2">
+						<label for="dynamic2" title="Activate dynamic cookies. When used, a session cookie is dynamically created for each server.">dynamic</label>
+						<input type="checkbox" name="dynamic" value="dynamic" id="dynamic2">
+						<span id="dynamic_div2" style="display: none;">
+							dynamic-cookie-key: <input type="text" placeholder="your-custom-key" name="dynamic-cookie-key" id="dynamic-cookie-key2" class="form-control">
+						</span>
+					</span>
+				</span>
+				<div id="options-backend-show-div" style="display: none;">
+					<div style="font-size: 12px; padding-bottom: 10px;">
+						<span style="padding-right: 10px;">Start typing options: </span>
+						<input type="text" id="options2" class="form-control">
+						<span style="padding-left: 10px;">
+							or press down. <a href="http://cbonte.github.io/haproxy-dconv/1.7/configuration.html" target="_blanck" style="color: #23527c" title="HAproxy docs">Read more about options</a>
+						</span>
+					</div>
+					<textarea name="option" title="Options thru" cols=80 rows=5 id="optionsInput2" placeholder="acl test hdr_beg(host) -i some_host"></textarea>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="addName">Servers:</td>
+			<td class="addOption">
+				<span id="servers2">
+					<input name="servers" required title="Backend IP" size=14 placeholder="xxx.xxx.xxx.xxx" class="form-control">:
+					<input name="server_port" required title="Backend IP" size=1 placeholder="yyy" class="form-control">
+					<br />
+					<input name="servers" title="Backend port" size=14 placeholder="xxx.xxx.xxx.xxx" class="form-control">:
+					<input name="server_port" title="Backend port" size=1 placeholder="yyy" class="form-control">
+					<br />
+					<input name="servers" title="Backend port" size=14 placeholder="xxx.xxx.xxx.xxx" class="form-control">:
+					<input name="server_port" title="Backend port" size=1 placeholder="yyy" class="form-control">
+				</span>
+				<span>
+					<a class="add-server" id="add-server-input2" title="Add backend server" style="cursor: pointer;"></a>
+				</span>
+			</td>
+		</tr>
+		<tr class="advance">
+			<td class="addName">Check:</td>
+			<td class="addOption">
+				<div>
+					<label for="controlgroup-backend-show" style="margin-top: 5px;" title="Change default check"	>Cusmot check params</label>
+					<input type="checkbox" id="controlgroup-backend-show" name="default-check">
+					<span class="tooltip tooltipTop"> Default params: inter 2000 rise 2 fall 5</span>
+				</div>
+				<div class="controlgroup" id="controlgroup-backend" style="display: none;">
+					<label for="check-servers-backend" title="Ebable servers check">Check</label>
+					<input type="checkbox" id="check-servers-backend" name="check-servers" checked value="1">
+					<select name="inter" id="inter-backend">
+						<option value="inter" disabled selected>inter</option>
+						<option value="1000">1000</option>
+						<option value="2000">2000</option>
+						<option value="3000">3000</option>
+					</select>
+					<select name="rise" id="rise-backend">
+						<option value="rise" disabled selected>rise</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+					</select>
+					<select name="fall" id="fall-backend">
+						<option value="fall" disabled selected>fall</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+					</select>
+				</div>
+			</td>
+		</tr>
+		<tr class="advance-show">
+			<td class="addName">Advanced:</td>
+			<td class="addOption"><a href="#" title="Show Advanced settings">Show Advanced settings</a></td>
+		</tr>
+		<tr>
+			<td class="addButton">
+				<button type="submit" value="" name="" class="btn btn-default">Add Backend</button>
+			</td>
+		</tr>
+		</form>
+		</table>
+	</div>
+		
+	<div id="ssl">
+		<table>
+			<tr class="overviewHead">
+				<td class="padding10 first-collumn" style="width: 20%;">View certificates</td>
+				<td>
+					Exist certificates
+				</td>
+			</tr>
+			<tr>
+				<td class="padding10 first-collumn">
+					<select required name="serv" id="serv5">
+						<option disabled selected>Choose server</option>
+						{% for select in selects %}
+							<option value="{{ select.2 }}">{{ select.1 }}</option>
+						{% endfor %}
+					</select>
+					<a class="ui-button ui-widget ui-corner-all" id="ssl_key_view" title="View certificates">View</a>	
+				</td>
+				<td>
+					<span  id="ajax-show-ssl"></span>
+				</td>
+			</tr>
+		<table>
+			<tr class="overviewHead">
+				<td class="padding10 first-collumn" style="width: 20%;">Upload SSL certificates</td>
+				<td>
+					Certificate name
+				</td>
+				<td>
+					<span title="This pem file will be used to create https connection with haproxy">Paste certificate content here(?)</span>
+				</td>
+			</tr>
+			<tr style="width: 50%;">
+				<td class="first-collumn" valign="top" style="padding-top: 15px;">
+					<select required id="serv4">
+						<option disabled selected>Choose server</option>
+						{% for select in selects %}
+							<option value="{{ select.2 }}">{{ select.1 }}</option>
+						{% endfor %}
+					</select>
+				</td>
+				<td valign="top" style="padding-top: 27px;">
+					<input type="text" id="ssl_name" class="form-control">
+				</td>
+				<td style="padding-top: 15px; padding-bottom: 15px;">
+					<textarea id="ssl_cert" cols="50" rows="5"></textarea><br /><br />
+					<a class="ui-button ui-widget ui-corner-all" id="ssl_key_upload" title="Upload ssl certificates">Upload</a>	
+				</td>	
+			</tr>
+		</table>
+		<div id="ajax-ssl"></div>
+	</div>
+	
+	{% if add %}
+		<div class="alert alert-success">	
+			<h3>{{ add }} was success added</h3>
+			{{ conf_add }}
+		</div>
+	{% endif %}
+	
+	<div id="dialog-confirm" title="View certificate " style="display: none;">
+		<center><pre id="dialog-confirm-body"></pre></center>
+	</div>
+	<input type="hidden" id="group" value="{{ group }}">
+	
+<script>
+$( ".force_close" ).selectmenu({
+  width: 180
+});
+</script>
+{% endblock %}

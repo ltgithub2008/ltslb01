@@ -1,0 +1,166 @@
+.menu  .svg-inline--fa {
+    margin-right: 0.5em;
+  }
+.auto-refresh-pause::before  {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\F04C";
+}
+.auto-refresh-resume::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f04b";
+}
+.overview-link::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f21e";
+}
+.stats::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f06e";
+}
+.mon::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f080";
+}
+.logs::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f02d";
+}
+.map::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f0e8";
+}
+.runtime::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f233";
+}
+.metrics::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f1fe";
+}
+.config-show::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f10a";
+}
+.compare::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f0c5";
+}
+.add::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f067";
+}
+.cert::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f0a3";
+}
+.edit::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f044";
+}
+.lists::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f0cb";
+}
+.waf::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f06d";
+}
+.hap::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f074";
+}
+.ha::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f0c2";
+}
+.keepalived::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f126";
+}
+.version::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f021";
+}
+.upload::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f093";
+}
+.delete::before, .deleteVer::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f00d";
+}
+.login::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f007";
+}
+.patreon::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f004";
+	color: red;
+	padding-left: 3px;
+}
+.update-row::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f01e";
+}
+.admin::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f21b";
+}
+.users::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f234";
+}
+.group::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f039";
+}
+.role::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f2b9";
+}
+.settings::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f0ad";
+}
+.add-admin::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f00c";
+}
+.add-server::before {
+	display: none;
+	font-family: "Font Awesome 5 Solid";
+	content: "\f067";
+	width:3px;
+}

@@ -7,8 +7,7 @@ import funct
 import sql
 from jinja2 import Environment, FileSystemLoader
 
-import codecs, sys
-sys.stdout = codecs.getwriter('utf8')(sys.stdout.buffer)
+
 
 env = Environment(extensions=["jinja2.ext.do"],loader=FileSystemLoader('templates/'))
 template = env.get_template('servers.html')

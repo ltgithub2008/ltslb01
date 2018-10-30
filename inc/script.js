@@ -1338,9 +1338,9 @@ $( function() {
 						height: "auto",
 						width: 400,
 						modal: true,
-						title: "Support the project!",
+						title: "LTproxy",
 						buttons: {
-						"Ok": function() {
+						"确定": function() {
 								window.location.replace(ref);
 							}
 						  }

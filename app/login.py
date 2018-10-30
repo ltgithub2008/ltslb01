@@ -94,7 +94,7 @@ if login is None:
 				
 create_db.update_all_silent()
 
-output_from_parsed_template = template.render(h2 = 1, title = "Login page. Enter please",
+output_from_parsed_template = template.render(h2 = 1, title = "&#x767b;&#x5f55;",
 													role = role,
 													user = user,
 													error_log = error_log,

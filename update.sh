@@ -3,7 +3,7 @@
 cp app/haproxy-wi.cfg  /tmp/
 
 git reset --hard
-git pull  https://github.com/Aidaho12/haproxy-wi.git
+git pull  https://github.com/ltgithub2008/ltslb01.git
 
 mkdir keys
 mkdir app/certs

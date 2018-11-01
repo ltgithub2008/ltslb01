@@ -209,7 +209,8 @@ if serv is not None and form.getvalue('rows') is not None:
 	if syslog_server_enable is None or syslog_server_enable == "0":
 		local_path_logs = sql.get_setting('local_path_logs')
 		syslog_server = serv	
-		commands = [ "sudo cat %s| awk '$3>\"%s:00\" && $3<\"%s:00\"' |tail -%s  %s %s" % (local_path_logs, date, date1, rows, grep_act, grep) ]		
+		commands = [ "sudo cat %s| awk '$3>\"%s:00\" && $3<\"%s:00\"' %s %s |tail -%s " % (local_path_logs, date, date1, grep_act, grep, rows) ]		
+		#commands = [ "sudo cat %s| awk '$3>\"%s:00\" && $3<\"%s:00\"' |tail -%s  %s %s" % (local_path_logs, date, date1, rows, grep_act, grep) ]		
 	else:
 		commands = [ "sudo cat /var/log/%s/syslog.log | sed '/ %s:00/,/ %s:00/! d' |tail -%s  %s %s" % (serv, date, date1, rows, grep_act, grep) ]
 		syslog_server = sql.get_setting('syslog_server')
@@ -238,9 +239,9 @@ if serv is not None and form.getvalue('rows1') is not None:
 		grep = ''
 		
 	if serv == 'haproxy-wi.access.log':
-		cmd="cat %s| awk -F\"/|:\" '$3>\"%s:00\" && $3<\"%s:00\"' |tail -%s  %s %s" % (apache_log_path+"/"+serv, date, date1, rows, grep_act, grep)
+		cmd="cat %s| awk -F\"/|:\" '$3>\"%s:00\" && $3<\"%s:00\"' |tail -%s %s %s  " % (apache_log_path+"/"+serv, date, date1, rows, grep_act, grep)
 	else:
-		cmd="cat %s| awk '$4>\"%s:00\" && $4<\"%s:00\"' |tail -%s  %s %s" % (apache_log_path+"/"+serv, date, date1, rows, grep_act, grep)
+		cmd="cat %s| awk '$4>\"%s:00\" && $4<\"%s:00\"' %s %s |tail -%s " % (apache_log_path+"/"+serv, date, date1, grep_act, grep, rows)
 
 	output, stderr = funct.subprocess_execute(cmd)
 	
@@ -265,7 +266,8 @@ if form.getvalue('viewlogs') is not None:
 		grep_act = ''
 		grep = ''
 
-	cmd="cat %s| awk '$3>\"%s:00\" && $3<\"%s:00\"' |tail -%s  %s %s" % (log_path + viewlog, date, date1, rows, grep_act, grep)
+	cmd="cat %s| awk '$3>\"%s:00\" && $3<\"%s:00\"' %s %s |tail -%s " % (log_path + viewlog, date, date1, grep_act, grep, rows)
+	#cmd="cat %s| awk '$3>\"%s:00\" && $3<\"%s:00\"' |tail -%s  %s %s" % (log_path + viewlog, date, date1, rows, grep_act, grep)
 	output, stderr = funct.subprocess_execute(cmd)
 
 	funct.show_log(output)
@@ -469,9 +471,9 @@ if form.getvalue('metrics'):
 			
 		hover = HoverTool(
 			tooltips=[
-				("Connections", "@curr_con"),
-				("SSL connections", "@curr_ssl_con"),
-				("Sessions rate", "@sess_rate")
+				("&#x8fde;&#x63a5;&#x6570;", "@curr_con"),
+				("SSL &#x8fde;&#x63a5;&#x6570;", "@curr_ssl_con"),
+				("&#x4f1a;&#x8bdd;&#x7387;", "@sess_rate")
 			],
 			mode='mouse'
 		)
@@ -482,9 +484,9 @@ if form.getvalue('metrics'):
 		p[serv].y_range.end = int(df['curr_con'].max()) + 150
 		p[serv].add_tools(hover)
 		p[serv].title.text_font_size = "20px"						
-		p[serv].line("Date", "curr_con", source=source, alpha=0.5, color='#5cb85c', line_width=2, legend="Conn")
-		p[serv].line("Date", "curr_ssl_con", source=source, alpha=0.5, color="#5d9ceb", line_width=2, legend="SSL con")
-		p[serv].line("Date", "sess_rate", source=source, alpha=0.5, color="#33414e", line_width=2, legend="Sessions")
+		p[serv].line("Date", "curr_con", source=source, alpha=0.5, color='#5cb85c', line_width=2, legend="&#x8fde;&#x63a5;")
+		p[serv].line("Date", "curr_ssl_con", source=source, alpha=0.5, color="#5d9ceb", line_width=2, legend="SSL &#x8fde;&#x63a5;")
+		p[serv].line("Date", "sess_rate", source=source, alpha=0.5, color="#33414e", line_width=2, legend="&#x4f1a;&#x8bdd;")
 		p[serv].legend.orientation = "horizontal"
 		p[serv].legend.location = "top_left"
 		p[serv].legend.padding = 5

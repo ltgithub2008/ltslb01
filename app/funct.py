@@ -390,11 +390,12 @@ def check_haproxy_config(serv):
 		
 def show_log(stdout):
 	i = 0
+	sline = ""
 	for line in stdout:
 		i = i + 1
 		line_class = "line3" if i % 2 == 0 else "line"
-		print('<div class="'+line_class+'">' + escape_html(line) + '</div>')
-			
+		sline = '<div class="'+line_class+'">' + escape_html(line) + '</div>' + sline
+	print (sline)
 def show_ip(stdout):
 	for line in stdout:
 		print(line)
